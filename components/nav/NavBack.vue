@@ -1,3 +1,3 @@
 <template>
-  <CommonButton type="plain" size="sm" icon="i-fluent-arrow-left-20-regular" @click="$router.back" />
+  <CommonButton type="plain" size="none" icon="i-fluent-arrow-left-20-regular" @click="$router.back" />
 </template>

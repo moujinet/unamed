@@ -2,7 +2,7 @@
 withDefaults(defineProps<{
   type?: 'plain' | 'solid' | 'fill'
   shape?: 'square' | 'circle'
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'none'
   color?: 'primary' | 'danger'
   icon?: string
   className?: string
@@ -66,6 +66,9 @@ withDefaults(defineProps<{
     --at-apply: rounded-full;
   }
 
+  &.is-none {
+    --at-apply: p-0 text-4;
+  }
   &.is-sm {
     --at-apply: p-(x4 y2) text-3;
   }
