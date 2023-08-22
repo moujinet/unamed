@@ -1,0 +1,25 @@
+.v-popper--theme-dropdown .v-popper__inner {
+  --at-apply: rounded border shadow text-base backdrop-blur-sm;
+  background-color: var(--c-bg-base);
+  border-color: var(--c-bg-base);
+  box-shadow: 0 6px 30px #0000001a;
+}
+.v-popper--theme-dropdown .v-popper__arrow-inner {
+  --at-apply: visible;
+  border-color: var(--c-bg-sider);
+}
+.v-popper--theme-dropdown .v-popper__arrow-outer {
+  border-color: var(--c-border-active);
+}
+.v-popper--theme-tooltip .v-popper__inner {
+  --at-apply: bg-main text-base rounded border shadow-sm;
+  border-color: var(--c-border-active);
+  padding: 7px 12px 6px;
+}
+.v-popper--theme-tooltip .v-popper__arrow-inner {
+  --at-apply: visible;
+  border-color: var(--c-bg-sider);
+}
+.v-popper--theme-tooltip .v-popper__arrow-outer {
+  border-color: var(--c-border-active);
+}

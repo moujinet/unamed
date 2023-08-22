@@ -6,6 +6,6 @@
         unamed
       </h1>
     </NuxtLink>
-    <NavBack v-if="!isSmaller" />
+    <NavBack v-if="!isSmaller && isHydrated" />
   </div>
 </template>

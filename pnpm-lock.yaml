@@ -55,6 +55,9 @@ devDependencies:
   '@iconify-json/iconoir':
     specifier: ^1.1.32
     version: 1.1.32
+  '@iconify-json/ph':
+    specifier: ^1.1.6
+    version: 1.1.6
   '@iconify-json/solar':
     specifier: ^1.1.2
     version: 1.1.2
@@ -1142,6 +1145,12 @@ packages:
 
   /@iconify-json/iconoir@1.1.32:
     resolution: {integrity: sha512-z12EzOZsqatGuCAc7CzYpxufVoexRKC910ZouB29sDT8lJiGUSVCmrhgqZSz4M7PIeqaN6YUuE6jNRgH7Wal+A==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/ph@1.1.6:
+    resolution: {integrity: sha512-dexzEndlXQX/sbQhnEpA94Pby6JCGV2tZToSGcPPQpbilDGyk5VMd0ymusYoocRAn6+qLpGRvMoz5XFKGqP+VA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

@@ -27,9 +27,9 @@ withDefaults(defineProps<{
       [`is-${shape}`]: shape,
       [`is-${size}`]: size,
       [`is-${color}`]: color,
-      'is-block': block && shape !== 'circle',
       'is-loading': loading,
       'is-dashed': dashed && type === 'solid',
+      'is-block': block && shape !== 'circle',
       'is-auto': auto,
       'has-icon': icon || loading,
       [`${className}`]: className,
@@ -59,6 +59,10 @@ withDefaults(defineProps<{
     --at-apply: cursor-not-allowed op-70 hover:op-70 active:op-70;
   }
 
+  &.is-block {
+    --at-apply: w-full;
+  }
+
   &.is-square {
     --at-apply: rounded;
   }
@@ -76,7 +80,14 @@ withDefaults(defineProps<{
     --at-apply: p-(x5 y3) text-4;
   }
   &.is-lg {
-    --at-apply: p-(x6 y4) text-5;
+    --at-apply: p-(x6 y4) text-4.5;
+  }
+  &.is-sm,
+  &.is-md,
+  &.is-lg {
+    &.is-block {
+      --at-apply: px-0;
+    }
   }
 
   &.is-plain {

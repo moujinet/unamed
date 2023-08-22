@@ -1,0 +1,30 @@
+:root {
+  /* #2DD2BE */
+  --c-primary: 45, 210, 190;
+  /* #F06464 */
+  --c-danger: 240, 100, 100;
+}
+
+.dark {
+  /* Background color */
+  --c-bg-base: #080B10;
+  --c-bg-sider: #0E121B;
+  --c-bg-inset: #151B2999;
+  --c-bg-inset-hover: #151B29CC;
+  --c-bg-inset-active: #151B29;
+
+  /* Text color */
+  --c-text-base: #6E6E96;
+  --c-text-caption: #C8D2E6;
+  --c-text-comment: #3C3C50;
+  --c-text-light: #fff;
+
+  /* Border color */
+  --c-border-base: #141E2899;
+  --c-border-hover: #141E28CC;
+  --c-border-active: #141E28;
+
+  /* Card */
+  --c-bg-card: var(--c-bg-sider);
+  --c-border-card: var(--c-border-base);
+}
