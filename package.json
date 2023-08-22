@@ -1,0 +1,66 @@
+{
+  "name": "@mouji/unamed",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/moujinet/unamed",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port 8553",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "commit": "czg",
+    "typecheck": "stale-dep && nuxi typecheck",
+    "postinstall": "stale-dep -u && simple-git-hooks && nuxt prepare"
+  },
+  "dependencies": {
+    "@morev/vue-transitions": "^2.3.6",
+    "@nuxt/image": "1.0.0-rc.1",
+    "@nuxtjs/color-mode": "^3.3.0",
+    "@unocss/nuxt": "^0.55.2",
+    "@unocss/reset": "^0.55.2",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/nuxt": "^10.3.0",
+    "duckdb": "^0.8.1",
+    "floating-vue": "2.0.0-beta.24",
+    "nuxt-icon": "^0.5.0",
+    "stale-dep": "^0.7.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.40.2",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@iconify-json/fluent": "^1.1.32",
+    "@iconify-json/iconoir": "^1.1.32",
+    "@iconify-json/solar": "^1.1.2",
+    "@iconify-json/svg-spinners": "^1.1.2",
+    "@nuxt/devtools": "latest",
+    "@types/node": "^20.5.1",
+    "@unocss/eslint-config": "^0.55.2",
+    "@unocss/preset-rem-to-px": "^0.55.2",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.7.1",
+    "czg": "^1.7.1",
+    "eslint": "^8.47.0",
+    "lint-staged": "^14.0.1",
+    "nuxt": "^3.6.5",
+    "postcss": "^8.4.28",
+    "postcss-nested": "^6.0.1",
+    "simple-git-hooks": "^2.9.0",
+    "std-env": "^3.4.2",
+    "typescript": "^5.1.6",
+    "vue-tsc": "^1.8.8"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  }
+}

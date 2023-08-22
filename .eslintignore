@@ -1,0 +1,8 @@
+*.css
+*.png
+*.ico
+*.toml
+*.svg
+*.patch
+*.txt
+public/
