@@ -75,12 +75,24 @@ withDefaults(defineProps<{
   }
   &.is-sm {
     --at-apply: p-(x4 y2) text-3;
+
+    &.is-circle {
+      --at-apply: p-2;
+    }
   }
   &.is-md {
     --at-apply: p-(x5 y3) text-4;
+
+&.is-circle {
+  --at-apply: p-3;
+}
   }
   &.is-lg {
     --at-apply: p-(x6 y4) text-4.5;
+
+&.is-circle {
+  --at-apply: p-4;
+}
   }
   &.is-sm,
   &.is-md,
