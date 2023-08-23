@@ -5,6 +5,6 @@
     <NavSiderItem title="Collections" icon="i-ph-stack" to="/user/collections" />
     <NavSiderItem title="Tags" icon="i-ph-hash" to="/user/tags" />
     <div />
-    <NavSiderItem title="Settings" icon="i-ph-gear-fine" to="/settings" />
+    <NavSiderItem title="Settings" icon="i-ph-gear-six" to="/settings" />
   </nav>
 </template>

@@ -27,7 +27,7 @@
         </span>
       </NuxtLink>
       <NuxtLink to="/settings" class="nav" active-class="text-primary">
-        <CommonIcon name="i-ph-gear-fine" size="24" />
+        <CommonIcon name="i-ph-gear-six" size="24" />
         <span text-3>
           Settings
         </span>
