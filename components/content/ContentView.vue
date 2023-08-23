@@ -10,10 +10,10 @@ const { y } = useWindowScroll()
 
 <template>
   <header sticky top-0 z-10 w-full select-none backdrop-blur transition-all :class="y > 40 ? 'op-90' : ''">
-    <div p="x-5 md:x-8 y-5" relative leading-none>
-      <NavBack v-if="isSmaller && isHydrated" />
-      <div absolute="lt-lg:~ lt-lg:center" flex="~ v-center gap-x-3">
-        <div v-if="icon" p="0px lg:11px" bg="lt-lg:transparent lg:sider" rounded>
+    <div p="x-5 y-5" relative leading-none>
+      <NavBack v-if="isHydrated && isMobile" />
+      <div absolute="lt-md:~ lt-md:center" flex="~ v-center gap-x-3">
+        <div v-if="icon" p="0px md:11px" bg="lt-md:transparent md:sider" rounded>
           <CommonIcon :name="icon" size="auto" class="text-(20px primary) md:text-24px" />
         </div>
         <h1 text="caption 18px lg:20px" leading-none>
@@ -26,7 +26,7 @@ const { y } = useWindowScroll()
     </div>
   </header>
 
-  <div p="x-5 md:x-8">
+  <div p="x-5">
     <div
       :class="{
         'grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6': view === 'grid',

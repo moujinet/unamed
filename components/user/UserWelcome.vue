@@ -15,9 +15,9 @@
     <CommonTooltip content="User Login" placement="right">
       <CommonButton
         color="primary"
-        :type="isSmaller && isHydrated ? 'plain' : 'fill'"
+        :type="isLaptop && isHydrated ? 'plain' : 'fill'"
         size="lg"
-        :class-name="isSmaller ? 'py-1!' : 'lt-lg:py-3!'"
+        :class-name="isLaptop ? 'py-1!' : 'lt-lg:py-3!'"
         icon="lt-lg:(i-ph-user-circle text-8)"
         block
       >
