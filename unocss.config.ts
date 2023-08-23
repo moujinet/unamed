@@ -37,6 +37,10 @@ export default defineConfig({
       'border-hover': 'border-$c-border-hover',
       'border-active': 'border-$c-border-active',
 
+      // card
+      'bg-card': 'bg-$c-bg-card',
+      'border-card': 'border-$c-border-card',
+
       // utils
       'flex-center': 'items-center justify-center',
       'flex-v-center': 'items-center',
