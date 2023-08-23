@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  title: string
+  label: string
   icon?: string
   to?: string
   value?: string
   arrow?: boolean
   underline?: boolean
   clickable?: boolean
+  collapsed?: boolean
 }>()
 
 const isClickable = computed(() => props.clickable || props.to)
@@ -20,11 +21,12 @@ function handleClick() {
   <div
     :class="{
       'border-b border-base': underline,
+      'p-0': collapsed,
+      'px-5 py-3': !collapsed,
       'active:bg-sider hover:text-primary cursor-pointer': isClickable,
       'text-primary': isClickable && $route.fullPath === to,
     }"
     flex="~ v-center justify-between"
-    p="x-5 y-3"
     text="base"
     select-none
     @click="handleClick"
@@ -32,7 +34,7 @@ function handleClick() {
     <div flex="~ v-center gap-x-3">
       <CommonIcon v-if="icon" :name="icon" size="18" />
       <div text="4" leading-none>
-        {{ title }}
+        {{ label }}
       </div>
     </div>
     <div h-4 leading-none text-comment>
