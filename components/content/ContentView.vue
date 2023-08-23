@@ -3,13 +3,20 @@ defineProps<{
   title: string
   icon?: string
   view?: 'grid' | 'list'
+  autoHideHeader?: boolean
 }>()
 
 const { y } = useWindowScroll()
 </script>
 
 <template>
-  <header sticky top-0 z-10 w-full select-none backdrop-blur transition-all :class="y > 40 ? 'op-90' : ''">
+  <header
+    sticky top-0 z-10 w-full select-none backdrop-blur transition-all
+    :class="[
+      y > 40 ? 'op-90' : '',
+      autoHideHeader ? 'md:hidden lt-md:block' : '',
+    ]"
+  >
     <div p="x-5 y-5" relative leading-none>
       <NavBack v-if="isHydrated && isMobile" />
       <div absolute="lt-md:~ lt-md:center" flex="~ v-center gap-x-3">
@@ -30,6 +37,7 @@ const { y } = useWindowScroll()
     <div
       :class="{
         'grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6': view === 'grid',
+        'flex flex-col gap-y-6': view === 'list',
       }"
     >
       <slot />
