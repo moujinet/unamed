@@ -25,6 +25,7 @@ export default defineConfig({
       'bg-inset': 'bg-$c-bg-inset',
       'bg-inset-hover': 'bg-$c-bg-inset-hover',
       'bg-inset-active': 'bg-$c-bg-inset-active',
+      'bg-light': 'bg-$c-bg-light',
 
       // text
       'text-base': 'text-$c-text-base',
