@@ -84,7 +84,7 @@ onClickOutside(dropdownRef, () => {
         <div v-if="allowClear && !isEmpty" class="select__clear" @click.stop="handleClear">
           <CommonIcon name="i-fluent-dismiss-20-regular" />
         </div>
-        <CommonIcon :name="loading ? 'i-svg-spinners-90-ring-with-bg' : 'i-fluent-chevron-up-down-20-regular'" />
+        <CommonIcon :name="loading ? 'i-svg-spinners-90-ring-with-bg' : 'i-ph-caret-up-down'" />
       </div>
     </div>
     <TransitionSlide :offset="[0, -20]">
@@ -101,7 +101,7 @@ onClickOutside(dropdownRef, () => {
             <span>{{ option.label }}</span>
           </div>
           <div v-if="modelValue.includes(option.value)" class="select__option--checked">
-            <CommonIcon name="i-fluent-checkmark-20-regular" />
+            <CommonIcon name="i-ph-check" />
           </div>
         </div>
       </div>
