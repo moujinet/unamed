@@ -23,7 +23,7 @@
 
       <div v-if="isHydrated" sticky bottom-0 z-10 w-full>
         <!-- <UserWelcome /> -->
-        <UserAvatar />
+        <UserInfo />
       </div>
     </aside>
     <main ml="sm:68px lg:260px" w="full sm:[calc(100%-68px)] lg:[calc(100%-260px)]">
