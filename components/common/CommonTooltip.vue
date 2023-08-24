@@ -15,7 +15,7 @@ defineProps<Props>()
   >
     <slot />
     <template #popper>
-      <div text-3>
+      <div text="3 caption">
         <slot name="popper">
           {{ content }}
         </slot>
