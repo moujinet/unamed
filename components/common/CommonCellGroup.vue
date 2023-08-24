@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 interface CellOptions {
-  title: string
+  label: string
   icon?: string
   to?: string
   value?: string
@@ -30,17 +30,17 @@ defineProps<{
       {{ name }}
     </h3>
     <slot>
-      <CommonCell
-        v-for="(cell, index) in cells"
-        :key="index"
-        :title="cell.title"
-        :icon="cell.icon"
-        :to="cell.to"
-        :value="cell.value"
-        :arrow="cell.arrow"
-        :underline="cell.underline"
-        :clickable="cell.clickable"
-      />
+      <template v-for="(cell, index) in cells" :key="index">
+        <CommonCell
+          :label="cell.label"
+          :icon="cell.icon"
+          :to="cell.to"
+          :value="cell.value"
+          :arrow="cell.arrow"
+          :underline="cell.underline"
+          :clickable="cell.clickable"
+        />
+      </template>
     </slot>
   </div>
 </template>
