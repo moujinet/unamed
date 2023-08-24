@@ -12,13 +12,13 @@
   </div>
 
   <div p="x-3 lg:x-6 b-20px">
-    <CommonTooltip content="User Login" placement="right">
+    <CommonTooltip content="User Login" placement="right" :disabled="isDesktop">
       <CommonButton
         color="primary"
         :type="isLaptop && isHydrated ? 'plain' : 'fill'"
         size="lg"
         :class-name="isLaptop ? 'py-1!' : 'lt-lg:py-3!'"
-        icon="lt-lg:(i-ph-user-circle text-8)"
+        :icon="isDesktop ? '' : 'i-ph-user-circle text-8'"
         block
       >
         Login

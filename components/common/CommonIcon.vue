@@ -1,14 +1,16 @@
 <script lang="ts" setup>
-withDefaults(defineProps<{
-  name?: string
+const props = withDefaults(defineProps<{
+  name: any
   size?: '16' | '18' | '20' | '24' | '42' | 'auto'
 }>(), {
   size: '16',
 })
+
+const isCssIcon = computed(() => props.name.startsWith('i-'))
 </script>
 
 <template>
-  <i
+  <span
     class="leading-none"
     :class="{
       [`${name}`]: name,
@@ -18,5 +20,8 @@ withDefaults(defineProps<{
       'text-24px': size === '24',
       'text-42px': size === '42',
     }"
-  />
+  >
+    <i v-if="isCssIcon" :class="name" />
+    <Icon v-else :name="name" />
+  </span>
 </template>
