@@ -3,6 +3,7 @@ const props = withDefaults(defineProps<{
   title?: string
   icon?: string
   okText?: string
+  okButtonColor?: 'primary' | 'danger'
   cancelText?: string
   underline?: 'none' | 'both' | 'header' | 'footer'
   loading?: boolean
@@ -11,6 +12,7 @@ const props = withDefaults(defineProps<{
   footer?: boolean
 }>(), {
   okText: 'OK',
+  okButtonColor: 'primary',
   cancelText: 'Cancel',
   underline: 'both',
   header: true,
@@ -79,7 +81,7 @@ function handleEvent(type: 'ok' | 'cancel' | 'close') {
             <CommonButton class="lt-sm:(w-full py-4!)" :auto="false" :disabled="loading" @click="handleEvent('cancel')">
               {{ cancelText }}
             </CommonButton>
-            <CommonButton class="lt-sm:(w-full py-4!)" :auto="false" color="primary" :loading="loading" @click="handleEvent('ok')">
+            <CommonButton class="lt-sm:(w-full py-4!)" :auto="false" :color="okButtonColor" :loading="loading" @click="handleEvent('ok')">
               {{ okText }}
             </CommonButton>
           </slot>
