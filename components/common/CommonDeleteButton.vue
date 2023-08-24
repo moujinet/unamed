@@ -39,7 +39,7 @@ function handleConfirm() {
       <div flex="~ col gap-y-6" p-6>
         <div flex="~ v-center gap-x-3">
           <CommonIcon :name="popperIcon" size="20" :class="`is-${popperColor}`" />
-          <span select-none text="5 caption">{{ popperText }}</span>
+          <span select-none text="4 caption">{{ popperText }}</span>
         </div>
         <div flex="~ justify-end v-center gap-x-4">
           <CommonButton :size="isMobile ? 'md' : 'sm'" :block="isMobile" @click="handleCancel">
