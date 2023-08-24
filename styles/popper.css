@@ -1,25 +1,40 @@
 .v-popper--theme-dropdown .v-popper__inner {
-  --at-apply: rounded border shadow text-base backdrop-blur-sm;
-  background-color: var(--c-bg-base);
-  border-color: var(--c-bg-base);
+  --at-apply: bg-main rounded border-(1 base) shadow text-base backdrop-blur-sm;
   box-shadow: 0 6px 30px #0000001a;
 }
 .v-popper--theme-dropdown .v-popper__arrow-inner {
   --at-apply: visible;
-  border-color: var(--c-bg-sider);
+  border-color: var(--c-bg-base);
 }
 .v-popper--theme-dropdown .v-popper__arrow-outer {
-  border-color: var(--c-border-active);
+  border-color: var(--c-border-base);
 }
+
 .v-popper--theme-tooltip .v-popper__inner {
-  --at-apply: bg-main text-base rounded border shadow-sm;
-  border-color: var(--c-border-active);
+  --at-apply: bg-main text-base rounded border-(1 base) shadow-sm;
   padding: 7px 12px 6px;
 }
 .v-popper--theme-tooltip .v-popper__arrow-inner {
   --at-apply: visible;
-  border-color: var(--c-bg-sider);
+  border-color: var(--c-bg-base);
 }
 .v-popper--theme-tooltip .v-popper__arrow-outer {
-  border-color: var(--c-border-active);
+  border-color: var(--c-border-base);
+}
+
+.v-popper__popper--no-positioning {
+  --at-apply: fixed z-1000 top-0 left-0 w-full h-full flex-(~ items-end);
+
+  .v-popper__backdrop {
+    --at-apply: block backdrop-blur-sm;
+  }
+
+  .v-popper__wrapper {
+    --at-apply: w-full pointer-events-auto;
+    transition: transform .15s ease-out;
+  }
+
+  &.v-popper__popper--hidden .v-popper__wrapper {
+    transform: translateY(100%);
+  }
 }
