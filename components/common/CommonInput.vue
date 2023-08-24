@@ -33,22 +33,27 @@ const visiblePassword = ref(false)
       'is-disabled': disabled || loading,
       'is-readonly': readonly,
       'is-loading': loading,
-      'has-icon': $slots.icon || icon,
+      'has-icon': $slots.prepend || icon,
       'has-clear': allowClear,
     }"
   >
-    <i v-if="loading" class="input__icon" :class="{ 'is-empty': isEmpty, 'i-svg-spinners-90-ring-with-bg': loading }" />
-    <i
-      v-if="!loading && $slots.icon || icon"
-      class="input__icon"
-      :class="{ 'is-empty': isEmpty, [`${icon}`]: icon && !loading, 'text-danger': hasError }"
-    />
+    <div class="input__prepend">
+      <slot name="prepend">
+        <i v-if="loading" class="input__icon" :class="{ 'is-empty': isEmpty, 'i-svg-spinners-90-ring-with-bg': loading }" />
+        <i
+          v-if="!loading || icon"
+          class="input__icon"
+          :class="{ 'is-empty': isEmpty, [`${icon}`]: icon && !loading, 'text-danger': hasError }"
+        />
+      </slot>
+    </div>
     <div class="input__append">
       <div v-if="allowClear && !isEmpty" class="input__clear" @click="modelValue = ''">
-        <CommonIcon name="i-fluent-dismiss-20-regular" />
+        <CommonIcon name="i-ph-x" size="20" />
       </div>
       <i
         v-if="type === 'password'"
+        class="text-20px"
         :class="visiblePassword ? 'i-ph-eye' : 'i-ph-eye-slash text-comment'"
         @click="visiblePassword = !visiblePassword"
       />
@@ -92,15 +97,18 @@ const visiblePassword = ref(false)
   }
 
   &__icon {
-    --at-apply: absolute top-50% left-4 z-10 translate-y-[-50%] text-20px;
+    --at-apply: text-20px;
 
     &.is-empty {
       --at-apply: op-80 text-comment;
     }
   }
 
+  &__prepend {
+    --at-apply: absolute top-50% left-4 z-10 translate-y-[-50%];
+  }
   &__append {
-    --at-apply: flex-(~ v-center) gap-x-2.5 absolute top-50% right-4 z-10 translate-y-[-50%] select-none text-20px leading-none;
+    --at-apply: flex-(~ v-center) gap-x-2.5 absolute top-50% right-4 z-10 translate-y-[-50%] select-none leading-none;
   }
 
   &.is-loading,
