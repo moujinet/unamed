@@ -12,7 +12,7 @@ const { y } = useWindowScroll()
 </script>
 
 <template>
-  <div :class="fixedWidth ? 'h-full lg:w-800px border-(r base)' : 'w-full'">
+  <div :class="fixedWidth ? 'h-full w-full xl:w-700px xl:border-r border-base' : 'w-full'">
     <header
       sticky top-0 z-10 w-full select-none backdrop-blur transition-all
       :class="[
