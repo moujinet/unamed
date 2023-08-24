@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-const { showNav, showContent } = useSplitView('settings')
+const props = defineProps<{
+  splitView: string
+}>()
+
+const { showNav, showContent } = useSplitView(props.splitView)
 </script>
 
 <template>
