@@ -1,27 +1,19 @@
 <script lang="ts" setup>
-interface SelectOption {
-  icon?: string
-  label: string
-  value: string
-}
+import type { IOption } from '~/types'
 
-const props = withDefaults(defineProps<{
-  options: SelectOption[]
+const props = defineProps<{
+  options: IOption<string>[]
   className?: string
   icon?: string
   placeholder?: string
-  multiple?: boolean
   loading?: boolean
   disabled?: boolean
   allowClear?: boolean
   error?: boolean
-  limit?: number
-}>(), {
-  limit: 0,
-})
+}>()
 
-const modelValue = defineModel<string[]>({ default: [] })
-const isEmpty = computed(() => modelValue.value.length === 0 || modelValue.value.every(v => v === ''))
+const modelValue = defineModel<string>({ default: '' })
+const isEmpty = computed(() => modelValue.value.length === 0 || modelValue.value === '')
 
 const currentOption = computed(() => {
   const opt = props.options.find(opt => modelValue.value.includes(opt.value))
@@ -38,20 +30,12 @@ function handleToggle() {
 }
 
 function handleOptionSelected(value: string) {
-  if (!props.multiple) {
-    modelValue.value = [value]
-    setTimeout(() => opened.value = false, 200)
-  }
-  else {
-    if (modelValue.value.includes(value))
-      modelValue.value = modelValue.value.filter(v => v !== value)
-    else
-      props.limit > modelValue.value.length && modelValue.value.push(value)
-  }
+  modelValue.value = value
+  setTimeout(() => opened.value = false, 200)
 }
 
 function handleClear() {
-  modelValue.value = []
+  modelValue.value = ''
 }
 
 onClickOutside(dropdownRef, () => {
@@ -65,7 +49,6 @@ onClickOutside(dropdownRef, () => {
       class="select"
       :class="{
         [`${className}`]: className,
-        'is-multiple': multiple,
         'is-loading': loading,
         'is-disabled': disabled || loading,
         'is-empty': isEmpty,
@@ -82,25 +65,26 @@ onClickOutside(dropdownRef, () => {
       </div>
       <div class="select__append">
         <div v-if="allowClear && !isEmpty" class="select__clear" @click.stop="handleClear">
-          <CommonIcon name="i-fluent-dismiss-20-regular" />
+          <CommonIcon name="i-ph-x" />
         </div>
         <CommonIcon :name="loading ? 'i-svg-spinners-90-ring-with-bg' : 'i-ph-caret-up-down'" />
       </div>
     </div>
+
     <TransitionSlide :offset="[0, -20]">
       <div v-if="opened" ref="dropdownRef" class="select__dropdown">
         <div
           v-for="option in options"
           :key="option.value"
           class="select__option"
-          :class="{ 'is-checked': modelValue.includes(option.value) }"
+          :class="{ 'is-checked': modelValue === option.value }"
           @click="handleOptionSelected(option.value)"
         >
           <div class="select__option--label">
-            <CommonIcon :name="option.icon" />
+            <CommonIcon v-if="option.icon" :name="option.icon" />
             <span>{{ option.label }}</span>
           </div>
-          <div v-if="modelValue.includes(option.value)" class="select__option--checked">
+          <div v-if="modelValue === option.value" class="select__option--checked">
             <CommonIcon name="i-ph-check" />
           </div>
         </div>
