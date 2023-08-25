@@ -3,6 +3,7 @@ defineProps<{
   title: string
   icon?: string
   view?: 'grid' | 'list'
+  hiddenBack?: boolean
   autoHideHeader?: boolean
   collapsed?: boolean
   fixedWidth?: boolean
@@ -14,14 +15,14 @@ const { y } = useWindowScroll()
 <template>
   <div :class="fixedWidth ? 'h-full w-full xl:w-700px xl:border-r border-base' : 'w-full'">
     <header
-      sticky top-0 z-10 w-full select-none backdrop-blur transition-all
+      sticky top-0 z-10 min-h-60px w-full select-none backdrop-blur transition-all
       :class="[
         y > 40 ? 'op-90' : '',
         autoHideHeader ? 'md:hidden lt-md:block' : '',
       ]"
     >
-      <div p="x-5 y-5" relative leading-none>
-        <NavBack v-if="isHydrated && isMobile" />
+      <div p="x-5 y-5" relative min-h-60px leading-none>
+        <NavBack v-if="!hiddenBack && isHydrated && isMobile" />
         <div absolute="lt-md:~ lt-md:center" flex="~ v-center gap-x-3">
           <div v-if="icon" p="0px md:11px" bg="lt-md:transparent md:sider" rounded>
             <CommonIcon :name="icon" size="auto" class="text-(20px primary) md:text-24px" />
