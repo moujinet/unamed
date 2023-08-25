@@ -9,9 +9,9 @@
   >
     <div flex="~ v-center justify-around" h-full>
       <NuxtLink to="/" class="nav" active-class="text-primary">
-        <CommonIcon name="i-ph-planet" size="24" />
+        <CommonIcon name="i-ph-bookmarks" size="24" />
         <span text-3>
-          Explore
+          Bookmarks
         </span>
       </NuxtLink>
       <NuxtLink to="/user/collections" class="nav" active-class="text-primary">
