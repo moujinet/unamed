@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Preference {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+
+  @@index([key, value])
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  password   String
+  avatar     String?
+  fullname   String?
+  is_admin   Boolean  @default(false)
+  created_at DateTime @default(now())
+  session    Session?
+
+  @@index([username, created_at(sort: Desc)])
+}
+
+model Session {
+  id         Int      @id @default(autoincrement())
+  token      String
+  user_id    Int      @unique
+  expires    Int
+  created_at DateTime @default(now())
+  user       User     @relation(fields: [user_id], references: [id])
+
+  @@index([token, created_at(sort: Desc)])
+}
+
+model Collection {
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
+  icon       String
+  created_at DateTime   @default(now())
+  bookmarks  Bookmark[]
+
+  @@index([name, created_at(sort: Desc)])
+}
+
+model Bookmark {
+  id            Int               @id @default(autoincrement())
+  name          String
+  description   String
+  url           String
+  icon          String
+  created_at    DateTime          @default(now())
+  collection    Collection        @relation(fields: [collection_id], references: [id])
+  collection_id Int
+  tags          TagsOnBookmarks[]
+
+  @@index([collection_id, created_at(sort: Desc)])
+}
+
+model Tag {
+  id        Int               @id @default(autoincrement())
+  name      String
+  bookmarks TagsOnBookmarks[]
+}
+
+model TagsOnBookmarks {
+  bookmark    Bookmark @relation(fields: [bookmark_id], references: [id])
+  bookmark_id Int
+  tag         Tag      @relation(fields: [tag_id], references: [id])
+  tag_id      Int
+
+  @@id([bookmark_id, tag_id])
+}
