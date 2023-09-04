@@ -25,6 +25,10 @@
 .v-popper__popper--no-positioning {
   --at-apply: fixed z-1000 top-0 left-0 w-full h-full flex-(~ items-end);
 
+  .v-popper__inner {
+    --at-apply: rounded-t-lg
+  }
+
   .v-popper__backdrop {
     --at-apply: block backdrop-blur-sm;
   }
