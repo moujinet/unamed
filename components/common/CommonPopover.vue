@@ -1,51 +1,48 @@
 <script lang="ts" setup>
 import { hideAllPoppers } from 'floating-vue'
 
-const props = withDefaults(defineProps<{
-  popperIcon?: string
-  popperText?: string
+withDefaults(defineProps<{
+  color?: 'primary' | 'danger'
+  icon?: string
+  question?: string
   confirmText?: string
   cancelText?: string
-  popperColor?: 'primary' | 'danger'
-  onConfirm?: () => Promise<void>
-  onCancel?: () => void
 }>(), {
-  popperIcon: 'i-ph-trash',
-  popperText: 'Are you sure you want to delete?',
-  confirmText: 'Delete',
+  color: 'primary',
+  icon: 'i-ph-info',
+  confirmText: 'Confirm',
   cancelText: 'Cancel',
-  popperColor: 'danger',
 })
+const emit = defineEmits(['cancel', 'confirm'])
 
 function handleCancel() {
-  props.onCancel?.()
+  emit('cancel')
   hideAllPoppers()
 }
 
 function handleConfirm() {
-  props.onConfirm?.().then(() => {
-    hideAllPoppers()
-  })
+  emit('confirm')
+  hideAllPoppers()
 }
 </script>
 
 <template>
   <VDropdown placement="top" :positioning-disabled="isMobile">
-    <CommonButton v-bind="$attrs">
-      <slot />
-    </CommonButton>
+    <slot />
 
     <template #popper>
       <div flex="~ col gap-y-6" p-6>
         <div flex="~ v-center gap-x-3">
-          <CommonIcon :name="popperIcon" size="20" :class="`is-${popperColor}`" />
-          <span select-none text="4 caption">{{ popperText }}</span>
+          <CommonIcon :name="icon" size="20" :class="`is-${color}`" />
+          <slot name="question">
+            <span select-none text="4 caption">{{ question }}</span>
+          </slot>
         </div>
         <div flex="~ justify-end v-center gap-x-4">
           <CommonButton :size="isMobile ? 'md' : 'sm'" :block="isMobile" @click="handleCancel">
             {{ cancelText }}
           </CommonButton>
-          <CommonButton :size="isMobile ? 'md' : 'sm'" :color="popperColor" :block="isMobile" @click="handleConfirm">
+          <CommonButton :size="isMobile ? 'md' : 'sm'" :color="color" :block="isMobile" @click="handleConfirm">
             {{ confirmText }}
           </CommonButton>
         </div>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data } = await useCollectionIcons()
+const { data } = await getCollectionIcons()
 
 const modelValue = defineModel<string>()
 
@@ -8,6 +8,8 @@ const selectedGroup = ref(0)
 const selectedIcon = ref(
   modelValue.value ? modelValue.value : data.value ? `${data.value[0].name}:${data.value[0].icons[0]}` : '',
 )
+
+modelValue.value = selectedIcon.value
 
 const resolvedIcons = computed(() => {
   return data.value?.find((_, i) => i === selectedGroup.value)?.icons

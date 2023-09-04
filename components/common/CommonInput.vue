@@ -11,16 +11,28 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
   readonly?: boolean
   error?: boolean
+  debounceTime?: number
 }>(), {
   type: 'text',
   maxLength: 0,
+  debounceTime: 250,
 })
 
-const modelValue = defineModel<string>({ default: '' })
+const modelValue = defineModel<string | null>({ default: '' })
+const inputValue = ref(modelValue.value)
+const debounced = refDebounced(inputValue, props.debounceTime)
 const isEmpty = computed(() => modelValue.value === '')
-const wordCount = computed(() => modelValue.value.length)
+const wordCount = computed(() => modelValue.value?.length || 0)
 const hasError = computed(() => props.error || (props.showWordLimit && wordCount.value > props.maxLength))
 const visiblePassword = ref(false)
+
+watch(modelValue, () => {
+  inputValue.value = modelValue.value
+})
+
+watch(debounced, () => {
+  modelValue.value = debounced.value
+})
 </script>
 
 <template>
@@ -63,7 +75,7 @@ const visiblePassword = ref(false)
       <slot name="append" />
     </div>
     <input
-      v-model="modelValue"
+      v-model="inputValue"
       :type="type === 'password' ? visiblePassword ? 'text' : 'password' : type"
       :placeholder="placeholder"
       :disabled="disabled || loading"
