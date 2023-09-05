@@ -54,6 +54,13 @@ export default defineNuxtConfig({
     defineModel: true,
   },
 
+  imports: {
+    dirs: [
+      './services',
+    ],
+    injectAtEnd: true,
+  },
+
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
@@ -71,7 +78,16 @@ export default defineNuxtConfig({
 
   colorMode: { classSuffix: '' },
 
+  runtimeConfig: {
+    session: {
+      expires: 24 * 60 * 60, // 1d
+    },
+  },
+
   nitro: {
+    experimental: {
+      asyncContext: true,
+    },
     esbuild: {
       options: {
         target: 'esnext',
@@ -100,8 +116,8 @@ export default defineNuxtConfig({
         modifiers: {
           fit: 'cover',
           format: 'png',
-          width: 42,
-          height: 42,
+          width: 32,
+          height: 32,
         },
       },
       favicon: {
