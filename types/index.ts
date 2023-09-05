@@ -8,5 +8,5 @@ export interface BuildInfo {
   shortCommit: string
   time: number
   branch: string
-  env: 'preview' | 'canary' | 'dev' | 'release'
+  env: 'canary' | 'dev' | 'release'
 }

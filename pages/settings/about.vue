@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const buildInfo = useAppConfig().buildInfo
+</script>
+
 <template>
   <ContentView title="About" icon="i-ph-info" collapsed auto-hide-header fixed-width>
     <div flex="~ col v-center gap-y-8" py-12>
@@ -6,14 +10,14 @@
     </div>
 
     <div flex="~ col gap-y-2" border="b base" px-2 py-4>
-      <CommonCell label="Version" value="1.0.0" />
+      <CommonCell label="Version" :value="`${buildInfo.version}(${buildInfo.env})`" />
       <CommonCell label="Built">
         <div flex="~ v-center gap-x-3">
           <CommonIcon name="i-ph-git-commit" size="16" />
           <NuxtLink to="https://github.com/moujinet/unamed" class="hover:text-primary">
-            929049d
+            {{ buildInfo.shortCommit }}
           </NuxtLink>
-          <span text-comment>(2023/08/14 09:11:32)</span>
+          <span text-comment>({{ formatDate(buildInfo.time, 'YYYY/MM/DD HH:mm') }})</span>
         </div>
       </CommonCell>
       <CommonCell label="Homepage" to="https://github.com/moujinet/unamed" />
