@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const loginModal = useModal('user.login.form')
 </script>
 
 <template>
@@ -12,10 +13,10 @@
   </div>
 
   <div p="x-3 lg:x-6 b-20px">
-    <CommonTooltip content="User Login" placement="right" :disabled="isDesktop">
+    <CommonTooltip v-if="isHydrated" content="User Login" placement="right" :disabled="isDesktop" @click="loginModal = true">
       <CommonButton
         color="primary"
-        :type="isLaptop && isHydrated ? 'plain' : 'fill'"
+        :type="isLaptop ? 'plain' : 'fill'"
         size="lg"
         :class-name="isLaptop ? 'py-1!' : 'lt-lg:py-3!'"
         :icon="isDesktop ? '' : 'i-ph-user-circle text-8'"
@@ -24,5 +25,8 @@
         Login
       </CommonButton>
     </CommonTooltip>
+
+    <UserLoginModal target="body" />
+    <UserRegisterModal target="body" />
   </div>
 </template>

@@ -4,6 +4,8 @@ withDefaults(defineProps<{
 }>(), {
   auto: true,
 })
+
+const { profile } = useSession()
 </script>
 
 <template>
@@ -22,22 +24,22 @@ withDefaults(defineProps<{
         flex="~ center"
         ring="3 primary"
       >
-        <NuxtImg src="https://placekitten.com/32/32" preset="avatar" loading="lazy" class="rounded-full" />
+        <NuxtImg :src="profile.avatar || 'https://placekitten.com/32/32'" preset="avatar" loading="lazy" class="rounded-full" />
       </div>
       <div
         :class="auto ? 'hidden lg:block' : ''"
       >
         <h3 text="caption 16px" leading-relaxed>
-          Allen Luo
+          {{ profile.fullname || profile.username }}
         </h3>
         <div text="comment 13px" leading-none>
-          Administrator
+          {{ profile.is_admin ? 'Administrator' : 'Member' }}
         </div>
       </div>
     </NuxtLink>
     <slot>
       <CommonTooltip content="Profile" placement="right" :disabled="isDesktop">
-        <NuxtLink to="/user/profile" hover:text-primary>
+        <NuxtLink to="/user/profile" :class="$route.fullPath.startsWith('/user') ? 'text-primary' : ''" hover:text-primary>
           <CommonIcon name="i-ph-sliders-horizontal" size="20" />
         </NuxtLink>
       </CommonTooltip>

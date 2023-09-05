@@ -1,12 +1,8 @@
 <script lang="ts" setup>
-interface RadioGroupOption {
-  icon: string
-  label?: string
-  value: string
-}
+import type { IOption } from '~/types'
 
 defineProps<{
-  options: RadioGroupOption[]
+  options: IOption<string>[]
   mini?: boolean
   bordered?: boolean
   block?: boolean
@@ -39,7 +35,7 @@ const modelValue = defineModel<string>()
       }"
       @click="modelValue = value"
     >
-      <div flex="~ center" leading-none>
+      <div v-if="icon" flex="~ center" leading-none>
         <CommonIcon :name="icon" :size="mini ? '16' : '20'" />
       </div>
       <span v-if="!mini && label">{{ label }}</span>

@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-interface ColorOption {
-  label: string
-  value: string
-}
+import type { IOption } from '~/types'
 
 defineProps<{
-  options: ColorOption[]
+  options: IOption<string>[]
 }>()
 
 const modelValue = defineModel<string>()

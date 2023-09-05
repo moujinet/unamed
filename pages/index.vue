@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+definePageMeta({
+  layout: 'none',
+  middleware: 'auth',
+})
 </script>
 
 <template>
-  <ContentView title="Explore" icon="i-ph-planet">
-    Collections
-  </ContentView>
+  <div />
 </template>

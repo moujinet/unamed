@@ -1,15 +1,25 @@
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
   title: string
   icon: string
   to?: string
   disabled?: boolean
 }>()
+
+const route = useRoute()
+const isActive = computed(() => props.to && route.fullPath.startsWith(props.to))
 </script>
 
 <template>
   <CommonTooltip :content="title" placement="right" :disabled="isDesktop">
-    <NuxtLink class="nav" :class="[disabled ? 'is-disabled' : '']" active-class="is-active" :to="!disabled ? to : ''">
+    <NuxtLink
+      class="nav"
+      :class="[
+        disabled ? 'is-disabled' : '',
+        isActive ? 'is-active' : '',
+      ]"
+      :to="!disabled ? to : ''"
+    >
       <CommonIcon class="nav__icon" :name="icon" size="18" />
       <span v-if="isDesktop && isHydrated">{{ title }}</span>
     </NuxtLink>

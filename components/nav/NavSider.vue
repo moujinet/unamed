@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+// const { isLoggedIn } = useSession()
+</script>
+
 <template>
   <nav flex="~ col gap-y-2" lt-lg:px-3>
     <NavSiderItem title="All Bookmarks" icon="i-ph-bookmarks" to="/bookmarks" />
