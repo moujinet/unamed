@@ -28,6 +28,7 @@ export const TAG_ALREADY_EXISTS = '402'
 export const TAG_CREATE_FAILED = '403'
 export const TAG_UPDATE_FAILED = '404'
 export const TAG_DELETE_FAILED = '405'
+export const TAG_HAS_BOOKMARKS = '406'
 
 export const UPLOAD_NO_FILES = '500'
 export const UPLOAD_FILE_TYPE_NO_SUPPORT = '501'
@@ -59,6 +60,7 @@ export const UPLOAD_FILE_TYPE_NO_SUPPORT = '501'
  * - 403 - Tag create failed
  * - 404 - Tag update failed
  * - 405 - Tag delete failed
+ * - 406 - Tag has bookmarks
  * - 500 - Upload no files
  * - 501 - Upload file type no support
  */
@@ -93,6 +95,7 @@ const errorMessages = {
   [TAG_CREATE_FAILED]: 'Tag create failed',
   [TAG_UPDATE_FAILED]: 'Tag update failed',
   [TAG_DELETE_FAILED]: 'Tag delete failed',
+  [TAG_HAS_BOOKMARKS]: 'Tag has bookmarks',
 
   [UPLOAD_NO_FILES]: 'Upload no files',
   [UPLOAD_FILE_TYPE_NO_SUPPORT]: 'Upload file type no support',

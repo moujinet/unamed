@@ -37,5 +37,6 @@ export interface IBookmarkModel {
 
 export interface ITagModel {
   id: number
+  author_id: number
   name: string
 }
