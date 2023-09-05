@@ -8,7 +8,9 @@ defineProps<{
 
 <template>
   <VDropdown placement="bottom-end" :positioning-disabled="isMobile">
-    <CommonIcon name="i-ph-dots-three" size="24" class="cursor-pointer" />
+    <slot name="trigger">
+      <CommonIcon name="i-ph-dots-three" size="24" class="cursor-pointer" />
+    </slot>
     <template #popper>
       <div flex="~ col gap-y-1" py="3">
         <div
