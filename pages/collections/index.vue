@@ -26,7 +26,7 @@ async function handleDelete(id: number) {
 </script>
 
 <template>
-  <ContentView title="Collections" icon="i-ph-stack" hidden-back>
+  <ContentView title="Collections" icon="i-ph-stack">
     <template #header>
       <CollectionFormModal
         :id="editId"
@@ -80,27 +80,27 @@ async function handleDelete(id: number) {
           </NuxtLink>
           <div flex="~ v-center gap-x-3" h-6>
             <!-- <CommonIcon name="i-ph-push-pin-simple" class="text-comment" /> -->
-            <CollectionMoreActions>
-              <CollectionMoreItem
+            <CommonDropdown>
+              <CommonDropdownItem
                 v-if="hasUserPermission(collection.author_id)"
-                label="Edit"
+                label="Edit Collection"
                 icon="i-ph-pencil"
                 @click="handleEdit(collection.id)"
               />
-              <CollectionMoreItem v-else label="You are not owner" icon="i-ph-info" :link="false" />
+              <CommonDropdownItem v-else label="You are not owner" icon="i-ph-info" :link="false" />
               <CommonPopover
                 v-if="hasDeletePermission()"
                 color="danger"
                 question="Are you sure want to delete?"
-                confirm-text="Delete"
+                confirm-text="Delete Collection"
                 icon="i-ph-trash"
                 @confirm="handleDelete(collection.id)"
               >
-                <CollectionMoreItem label="Delete" icon="i-ph-trash" danger />
+                <CommonDropdownItem label="Delete" icon="i-ph-trash" danger />
               </CommonPopover>
               <div v-if="hasUserPermission(collection.author_id)" border="b base" my-2 />
-              <CollectionMoreItem label="Statistics" icon="i-ph-activity" />
-            </CollectionMoreActions>
+              <CommonDropdownItem label="Statistics" icon="i-ph-activity" />
+            </CommonDropdown>
           </div>
         </div>
       </CommonCard>

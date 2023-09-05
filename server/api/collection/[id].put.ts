@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   if (!id)
     return error(COLLECTION_NOT_FOUND)
 
-  const data = await readBody<Omit<ICollectionModel, 'icon' | 'name'>>(event)
+  const data = await readBody<Pick<ICollectionModel, 'icon' | 'name'>>(event)
   const code = await updateCollection(
     Number.parseInt(id.trim()),
     {

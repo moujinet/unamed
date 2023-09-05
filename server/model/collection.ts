@@ -2,6 +2,7 @@ import {
   COLLECTION_ALREADY_EXISTS,
   COLLECTION_CREATE_FAILED,
   COLLECTION_DELETE_FAILED,
+  COLLECTION_HAS_BOOKMARKS,
   COLLECTION_NOT_FOUND,
   COLLECTION_UPDATE_FAILED,
   SUCCESS,
@@ -87,11 +88,20 @@ export async function updateCollection(id: number, data: Partial<Omit<ICollectio
 }
 
 export async function deleteCollection(id: number): Promise<ErrorCode> {
-  if (!(await isExistsCollectionId(id)))
+  const collection = await prisma.collection.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      bookmarks: true,
+    },
+  })
+
+  if (!collection)
     return COLLECTION_NOT_FOUND
 
-  // TODO: when delete collection, check if bookmarks in the collection
-  // Throws: COLLECTION_HAS_BOOKMARKS
+  if (collection.bookmarks.length > 0)
+    return COLLECTION_HAS_BOOKMARKS
 
   if (await prisma.collection.delete({
     where: {
