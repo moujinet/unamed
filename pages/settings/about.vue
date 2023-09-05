@@ -14,7 +14,7 @@ const buildInfo = useAppConfig().buildInfo
       <CommonCell label="Built">
         <div flex="~ v-center gap-x-3">
           <CommonIcon name="i-ph-git-commit" size="16" />
-          <NuxtLink to="https://github.com/moujinet/unamed" class="hover:text-primary">
+          <NuxtLink :to="`https://github.com/moujinet/unamed/commit/${buildInfo.commit}`" class="hover:text-primary">
             {{ buildInfo.shortCommit }}
           </NuxtLink>
           <span text-comment>({{ formatDate(buildInfo.time, 'YYYY/MM/DD HH:mm') }})</span>

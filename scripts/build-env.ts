@@ -26,4 +26,4 @@ const buildInfo: BuildInfo = {
 }
 
 // Write build info
-await fs.writeJSON('build-info.json', buildInfo, { spaces: 2, EOL: '\n' })
+await fs.writeJSON('build-info.json', buildInfo, { spaces: 2, EOL: '\n', encoding: 'utf8', flag: 'w+' })
