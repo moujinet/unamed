@@ -114,7 +114,7 @@ onClickOutside(dropdownRef, () => {
   }
 
   &__dropdown {
-    --at-apply: absolute mt-1 w-full rounded bg-inset border-(1 base) py-2 z-20 shadow;
+    --at-apply: absolute mt-1 w-full rounded bg-inset-active border-(1 base) py-2 z-20 shadow;
   }
 
   &__option {
