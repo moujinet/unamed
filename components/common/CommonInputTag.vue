@@ -8,11 +8,12 @@ defineProps<{
 const tags = defineModel<string[]>('modelValue', { default: [] })
 const inputValue = ref('')
 const inputRef = ref()
-const autocomplete = ref<string[]>([])
+const suggestions = ref<string[]>([])
 const suggestionSelected = ref('')
 const { focused } = useFocus(inputRef)
 
 const isEmpty = computed(() => tags.value.length === 0 && inputValue.value === '')
+const resolvedSuggestions = computed(() => suggestions.value.filter(tag => !tags.value.includes(tag)))
 
 const getDebouncedTags = useDebounceFn(async (search?: string) => {
   const { code, data } = await getTags(search, 5)
@@ -45,17 +46,19 @@ async function handleInputChange(e: any) {
   }
 
   if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
-    const current = autocomplete.value.indexOf(suggestionSelected.value || autocomplete.value[0])
+    const current = suggestionSelected.value
+      ? resolvedSuggestions.value.indexOf(suggestionSelected.value)
+      : 0
 
     if (e.key === 'ArrowUp') {
       suggestionSelected.value = current === 0
-        ? autocomplete.value[autocomplete.value.length - 1]
-        : autocomplete.value[current - 1]
+        ? resolvedSuggestions.value[resolvedSuggestions.value.length - 1]
+        : resolvedSuggestions.value[current - 1]
     }
     else {
-      suggestionSelected.value = current === autocomplete.value.length - 1
-        ? autocomplete.value[0]
-        : autocomplete.value[current + 1]
+      suggestionSelected.value = current === resolvedSuggestions.value.length - 1
+        ? resolvedSuggestions.value[0]
+        : resolvedSuggestions.value[current + 1]
     }
 
     return
@@ -65,27 +68,28 @@ async function handleInputChange(e: any) {
     const tags = await getDebouncedTags(inputValue.value)
 
     if (tags) {
-      autocomplete.value = tags
-      suggestionSelected.value = tags[0]
+      suggestions.value = tags
+      suggestionSelected.value = resolvedSuggestions.value[0]
     }
     else {
-      autocomplete.value = []
+      suggestions.value = []
     }
   }
   else {
-    autocomplete.value = []
+    suggestions.value = []
   }
 }
 
 function handleSuggestionClick(tag: string) {
   tags.value.push(tag)
   inputValue.value = ''
-  autocomplete.value = []
+  suggestions.value = []
 }
 
 function handleClearAll() {
   inputValue.value = ''
   tags.value = []
+  suggestions.value = []
 }
 
 function handleTagClose(tag: string) {
@@ -133,11 +137,11 @@ function handleTagClose(tag: string) {
       </div>
     </div>
     <div
-      v-if="autocomplete.length > 0"
+      v-if="resolvedSuggestions.length > 0"
       class="input-tag__autocomplete"
     >
       <div
-        v-for="(suggestion, index) in autocomplete"
+        v-for="(suggestion, index) in resolvedSuggestions"
         :key="index"
         class="input-tag__autocomplete--item"
         :class="suggestionSelected === suggestion ? 'is-active' : ''"
