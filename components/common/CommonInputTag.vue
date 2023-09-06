@@ -7,22 +7,80 @@ defineProps<{
 
 const tags = defineModel<string[]>('modelValue', { default: [] })
 const inputValue = ref('')
-
 const inputRef = ref()
+const autocomplete = ref<string[]>([])
+const suggestionSelected = ref('')
 const { focused } = useFocus(inputRef)
 
 const isEmpty = computed(() => tags.value.length === 0 && inputValue.value === '')
 
-function handleInputEnter() {
-  if (inputValue.value && inputValue.value.trim() !== '' && !tags.value.includes(inputValue.value)) {
-    tags.value.push(inputValue.value.trim())
+const getDebouncedTags = useDebounceFn(async (search?: string) => {
+  const { code, data } = await getTags(search, 5)
+
+  if (code.value === SUCCESS)
+    return data.value?.map(tag => tag.name)
+
+  return []
+}, 500)
+
+function addTag(tag: string) {
+  if (!tags.value.includes(tag))
+    tags.value.push(tag)
+}
+
+async function handleInputChange(e: any) {
+  if (['Enter'].includes(e.key)) {
+    if (suggestionSelected.value)
+      addTag(suggestionSelected.value)
+    else if (inputValue.value && inputValue.value.trim() !== '' && !tags.value.includes(inputValue.value))
+      addTag(inputValue.value.trim())
+
     inputValue.value = ''
+    suggestionSelected.value = ''
+  }
+
+  if (['Backspace'].includes(e.key)) {
+    if (inputValue.value === '')
+      tags.value.pop()
+  }
+
+  if (['ArrowUp', 'ArrowDown'].includes(e.key)) {
+    const current = autocomplete.value.indexOf(suggestionSelected.value || autocomplete.value[0])
+
+    if (e.key === 'ArrowUp') {
+      suggestionSelected.value = current === 0
+        ? autocomplete.value[autocomplete.value.length - 1]
+        : autocomplete.value[current - 1]
+    }
+    else {
+      suggestionSelected.value = current === autocomplete.value.length - 1
+        ? autocomplete.value[0]
+        : autocomplete.value[current + 1]
+    }
+
+    return
+  }
+
+  if (inputValue.value.length > 1) {
+    const tags = await getDebouncedTags(inputValue.value)
+
+    if (tags) {
+      autocomplete.value = tags
+      suggestionSelected.value = tags[0]
+    }
+    else {
+      autocomplete.value = []
+    }
+  }
+  else {
+    autocomplete.value = []
   }
 }
 
-function handleInputBackspace() {
-  if (inputValue.value === '')
-    tags.value.pop()
+function handleSuggestionClick(tag: string) {
+  tags.value.push(tag)
+  inputValue.value = ''
+  autocomplete.value = []
 }
 
 function handleClearAll() {
@@ -36,36 +94,57 @@ function handleTagClose(tag: string) {
 </script>
 
 <template>
-  <div
-    class="input-tag"
-    :class="{
-      'is-focused': focused,
-    }"
-    @click="inputRef.focus()"
-  >
+  <div relative>
     <div
-      flex="~ v-center gap-x-1.5"
+      class="input-tag"
+      :class="{
+        'is-focused': focused,
+      }"
+      @click="inputRef.focus()"
     >
-      <slot name="prefix" />
-      <div class="input-tag__tags">
-        <template v-for="(tag, index) in tags" :key="index">
-          <CommonTag :label="tag" closeable @close="handleTagClose" />
-        </template>
+      <div
+        flex="~ v-center gap-x-1.5"
+      >
+        <slot name="prefix" />
+        <div class="input-tag__tags">
+          <template v-for="(tag, index) in tags" :key="index">
+            <CommonTag
+              v-if="index < 4"
+              :label="index === 3 ? `${(tags.length - 3).toString()} more` : tag"
+              :closeable="index < 3"
+              @close="handleTagClose"
+            />
+          </template>
+        </div>
+        <div class="input-tag__input">
+          <input
+            ref="inputRef"
+            v-model="inputValue"
+            type="text"
+            :data-suggestion="suggestionSelected"
+            :placeholder="placeholder"
+            :disabled="disabled"
+            @keydown="handleInputChange"
+          >
+        </div>
       </div>
-      <div class="input-tag__input">
-        <input
-          ref="inputRef"
-          v-model="inputValue"
-          type="text"
-          :placeholder="placeholder"
-          :disabled="disabled"
-          @keydown.enter="handleInputEnter"
-          @keydown.backspace="handleInputBackspace"
-        >
+      <div v-if="allowClear" class="input-tag__clear">
+        <CommonIcon v-show="!isEmpty" name="i-ph-x" size="20" class="hover:text-caption" @click.stop="handleClearAll" />
       </div>
     </div>
-    <div v-if="allowClear" class="input-tag__clear">
-      <CommonIcon v-show="!isEmpty" name="i-ph-x" size="20" class="hover:text-caption" @click.stop="handleClearAll" />
+    <div
+      v-if="autocomplete.length > 0"
+      class="input-tag__autocomplete"
+    >
+      <div
+        v-for="(suggestion, index) in autocomplete"
+        :key="index"
+        class="input-tag__autocomplete--item"
+        :class="suggestionSelected === suggestion ? 'is-active' : ''"
+        @click="handleSuggestionClick(suggestion)"
+      >
+        <CommonHighlightText :content="suggestion" :keyword="inputValue" />
+      </div>
     </div>
   </div>
 </template>
@@ -84,12 +163,24 @@ function handleTagClose(tag: string) {
 
   &__input {
     input {
-      --at-apply: text-4 leading-none outline-none bg-transparent placeholder:text-comment;
+      --at-apply: w-100px text-4 leading-none outline-none bg-transparent placeholder:text-comment;
     }
   }
 
   &__clear {
     --at-apply: flex-(~ v-center gap-x-1);
+  }
+
+  &__autocomplete {
+    --at-apply: absolute z-10 mt-1 w-full rounded bg-inset-active;
+
+    &--item {
+      --at-apply: px-4 py-3 hover:text-caption hover:bg-sider;
+
+      &.is-active {
+        --at-apply: text-caption bg-sider;
+      }
+    }
   }
 }
 </style>
