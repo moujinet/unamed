@@ -21,8 +21,18 @@ export async function isExistsTagId(id: number, name?: string): Promise<boolean>
   }) !== null
 }
 
-export async function getTags(): Promise<ITagModel[]> {
-  return await prisma.tag.findMany()
+export async function getTags(search?: string, limit?: number): Promise<ITagModel[]> {
+  return await prisma.tag.findMany({
+    where: search
+      ? {
+          OR: [
+            { name: { startsWith: search } },
+            { name: { endsWith: search } },
+          ],
+        }
+      : {},
+    take: limit,
+  })
 }
 
 export async function getTag(id: number): Promise<ITagModel | null> {

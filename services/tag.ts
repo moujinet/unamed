@@ -4,8 +4,15 @@ export async function getTag(id: number) {
   return await useFetchAPI<ITagModel>(`/api/tag/${id}`)
 }
 
-export async function getTags() {
-  return await useFetchAPI<ITagModel[]>('/api/tags')
+export async function getTags(search?: string, limit?: number) {
+  return await useFetchAPI<ITagModel[]>(
+    search ? `/api/tags/${search}` : '/api/tags',
+    {
+      params: {
+        limit,
+      },
+    },
+  )
 }
 
 export async function createTag(name: string) {
