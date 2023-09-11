@@ -25,3 +25,7 @@ logs
 
 # sqlite
 *.sqlite
+
+# vitepress
+docs/.vitepress/dist
+docs/.vitepress/cache
