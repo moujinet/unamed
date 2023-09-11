@@ -1,7 +1,7 @@
 # Update avatar of current user
 
 <Api
-  method="post"
+  method="patch"
   endpoint="/api/user/avatar"
   description="Update user avatar for the current logged-in user."
 />
@@ -10,13 +10,13 @@
 
 <ApiAuth />
 
-### Body <Badge type="info" text="multipart/form-data" class="float-right mt-1" />
+### Body <Badge type="info" text="application/json" class="float-right mt-1" />
 
 <div class="parameters">
   <ApiParam
-    name="file"
+    name="avatar"
     type="string"
-    description="File object."
+    description="The avatar of current user."
     required
   />
 </div>
@@ -32,9 +32,5 @@
 <!--@include: @reference/schemas/codes/SUCCESS.md-->
 
 <!--@include: @reference/schemas/codes/USER_UPDATE_FAILED.md-->
-
-<!--@include: @reference/schemas/codes/UPLOAD_NO_FILE.md-->
-
-<!--@include: @reference/schemas/codes/UPLOAD_FILE_TYPE_NOT_ALLOW.md-->
 
 :::
