@@ -46,4 +46,6 @@
 }
 ```
 
+<!--@include: @reference/schemas/codes/BOOKMARK_URL_REQUIRED.md-->
+
 :::

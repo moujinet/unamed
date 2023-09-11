@@ -3,6 +3,6 @@
 
 {
   "code": "106",
-  "message": "User update failed"
+  "message": "User profile update failed"
 }
 ```

@@ -1,8 +1,8 @@
-```json [108]
+```json [107]
 // USER_LOGIN_FAILED
 
 {
-  "code": "108",
+  "code": "107",
   "message": "User login failed"
 }
 ```

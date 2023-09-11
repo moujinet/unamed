@@ -3,6 +3,6 @@
 
 {
   "code": "105",
-  "message": "User register failed"
+  "message": "User registration failed"
 }
 ```

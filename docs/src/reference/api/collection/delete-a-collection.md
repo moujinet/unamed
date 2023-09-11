@@ -21,4 +21,6 @@
 
 <!--@include: @reference/schemas/codes/COLLECTION_DELETE_FAILED.md-->
 
+<!--@include: @reference/schemas/codes/COLLECTION_HAS_BOOKMARKS.md-->
+
 :::

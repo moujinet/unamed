@@ -10,7 +10,6 @@
 <!--@include: ./codes/USER_PASSWORD_NOT_SAME_TWICE.md-->
 <!--@include: ./codes/USER_CREATE_FAILED.md-->
 <!--@include: ./codes/USER_UPDATE_FAILED.md-->
-<!--@include: ./codes/USER_DELETE_FAILED.md-->
 <!--@include: ./codes/USER_LOGIN_FAILED.md-->
 
 :::

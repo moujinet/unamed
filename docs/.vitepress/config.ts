@@ -96,7 +96,6 @@ export default defineConfig({
                 { text: 'Update profile of current user', link: '/reference/api/user/update-profile-of-current-user' },
                 { text: 'Update avatar of current user', link: '/reference/api/user/update-avatar-of-current-user' },
                 { text: 'Change password of current user', link: '/reference/api/user/change-password-of-current-user' },
-                { text: 'Upload avatar image', link: '/reference/api/user/upload-avatar-image' },
               ],
             },
           ],
