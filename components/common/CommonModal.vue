@@ -69,7 +69,7 @@ function handleEvent(type: 'ok' | 'cancel' | 'close') {
           >
             <div flex="~ v-center" gap-x-4 leading-none text-caption>
               <slot name="header">
-                <CommonIcon v-if="icon" :name="icon" size="24" />
+                <CommonIcon v-if="icon || loading" :name="loading ? 'i-svg-spinners-90-ring-with-bg' : icon" size="24" />
                 <strong text-4.5 font-semibold>{{ title }}</strong>
               </slot>
             </div>
