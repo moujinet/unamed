@@ -50,17 +50,39 @@ export async function createSession(userId: number): Promise<string> {
 }
 
 export async function destroySession(userId: number) {
-  return await prisma.session.delete({
-    where: {
-      user_id: userId,
-    },
-  })
+  try {
+    if (userId === 0)
+      return
+
+    if (await prisma.session.findFirst({ where: { user_id: userId } })) {
+      await prisma.session.delete({
+        where: {
+          user_id: userId,
+        },
+      })
+    }
+  }
+  catch (e) {
+  }
+
+  return true
 }
 
 export async function destroyToken(token: string) {
-  return await prisma.session.delete({
-    where: {
-      token,
-    },
-  })
+  try {
+    if (token === '')
+      return
+
+    if (await prisma.session.findFirst({ where: { token } })) {
+      await prisma.session.delete({
+        where: {
+          token,
+        },
+      })
+    }
+  }
+  catch (e) {
+  }
+
+  return true
 }
