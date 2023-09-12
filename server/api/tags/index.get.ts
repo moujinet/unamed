@@ -1,8 +1,8 @@
-import { getTags } from '~/server/model/tag'
-import type { ITagModel } from '~/types'
+import { prisma } from '~/prisma/client'
+import type { IApiResponse, ITagModel } from '~/types'
 
-export default defineEventHandler(async () => {
-  return payload<ITagModel[]>(
-    await getTags(),
-  )
+export default defineEventHandler(async (): IApiResponse<ITagModel[]> => {
+  const tags = await prisma.tag.findMany()
+
+  return payload<ITagModel[]>(tags)
 })

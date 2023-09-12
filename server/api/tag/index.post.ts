@@ -1,12 +1,35 @@
-import { createTag } from '~/server/model/tag'
-import type { ITagModel } from '~/types'
+import type { IApiResponse } from '~/types'
+import { prisma } from '~/prisma/client'
+import { TAG_ALREADY_EXISTS, TAG_CREATE_FAILED } from '~/utils/errors'
 
-export default defineEventHandler(async (event) => {
-  const { name } = await readBody<Pick<ITagModel, 'name'>>(event)
-  const result = await createTag({ name, author_id: event.context.user.id })
+interface ICreateTagBody {
+  name: string
+}
 
-  if (typeof result === 'number')
-    return payload(result)
+export default defineEventHandler(async (event): IApiResponse<null> => {
+  const { name } = await readBody<ICreateTagBody>(event)
 
-  return error(result)
+  if (name.trim() === '')
+    return error(TAG_CREATE_FAILED)
+
+  const exists = await prisma.tag.findUnique({
+    where: {
+      name,
+    },
+  })
+
+  if (exists)
+    return error(TAG_ALREADY_EXISTS)
+
+  const tag = await prisma.tag.create({
+    data: {
+      author_id: event.context.user?.id,
+      name: name.trim(),
+    },
+  })
+
+  if (!tag)
+    return error(TAG_CREATE_FAILED)
+
+  return success()
 })

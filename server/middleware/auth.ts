@@ -1,5 +1,3 @@
-import { getSession } from '~/server/model/session'
-
 export default defineEventHandler(async (to) => {
   // check whitelist API routes
   const whitelist = [
@@ -15,12 +13,13 @@ export default defineEventHandler(async (to) => {
   if (process.server && to.path.startsWith('/api')) {
     if (whitelist.filter(e => (new RegExp(e.path)).test(to.path) && e.method === to.method).length === 0) {
       const token = getRequestHeaders(to).authorization?.replace('Bearer ', '')
-      const session = await getSession(token || '')
 
-      if (!token || !session || !session.user)
+      if (!token || !await checkSession(token))
         throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
 
-      to.context.user = session.user
+      const session = await getServerSession(token)
+
+      to.context.user = session!.user
       to.context.token = token
     }
   }

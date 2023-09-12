@@ -7,7 +7,7 @@
     <NavSiderItem title="All Bookmarks" icon="i-ph-bookmarks" to="/bookmarks" />
     <div />
     <NavSiderItem title="Collections" icon="i-ph-stack" to="/collections" />
-    <NavSiderItem title="Tags" icon="i-ph-hash" to="/tags" />
+    <!-- <NavSiderItem title="Tags" icon="i-ph-hash" to="/tags" /> -->
     <div />
     <NavSiderItem title="Settings" icon="i-ph-gear-six" to="/settings" />
   </nav>

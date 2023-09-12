@@ -1,15 +1,40 @@
-import { createCollection } from '~/server/model/collection'
-import type { ICollectionModel } from '~/types'
+import { prisma } from '~/prisma/client'
+import type { IApiResponse } from '~/types'
+import {
+  COLLECTION_ALREADY_EXISTS,
+  COLLECTION_CREATE_FAILED,
+} from '~/utils/errors'
 
-export default defineEventHandler(async (event) => {
-  const data = await readBody<Pick<ICollectionModel, 'icon' | 'name'>>(event)
-  const result = await createCollection({
-    ...data,
-    author_id: event.context.user.id,
+interface ICreateCollectionBody {
+  name: string
+  icon: string
+}
+
+export default defineEventHandler(async (event): IApiResponse<null> => {
+  const { name, icon } = await readBody<ICreateCollectionBody>(event)
+
+  if (name.trim() === '' || icon.trim() === '')
+    return error(COLLECTION_CREATE_FAILED)
+
+  const exists = await prisma.collection.findUnique({
+    where: {
+      name: name.trim(),
+    },
   })
 
-  if (typeof result === 'number')
-    return payload(result)
+  if (exists)
+    return error(COLLECTION_ALREADY_EXISTS)
 
-  return error(result)
+  const newCollection = await prisma.collection.create({
+    data: {
+      author_id: event.context.user?.id,
+      name: name.trim(),
+      icon: icon.trim(),
+    },
+  })
+
+  if (newCollection)
+    return success()
+
+  return error(COLLECTION_CREATE_FAILED)
 })

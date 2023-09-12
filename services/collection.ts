@@ -53,7 +53,7 @@ export async function createCollection(name: string, icon: string) {
 
 export async function updateCollection(id: number, name: string, icon: string) {
   return await useFetchAPI<null>(`/api/collection/${id}`, {
-    method: 'put',
+    method: 'patch',
     body: {
       name,
       icon,

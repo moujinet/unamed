@@ -6,6 +6,10 @@ export interface IUserModel {
   avatar: string | null
   is_admin: boolean
   created_at: Date
+
+  bookmarks?: IBookmarkModel[]
+  collections?: ICollectionModel[]
+  tags?: ITagModel[]
 }
 
 export interface ISessionModel {
@@ -14,6 +18,8 @@ export interface ISessionModel {
   token: string
   expires: number
   created_at: Date
+
+  user?: IUserModel
 }
 
 export interface ICollectionModel {
@@ -22,6 +28,9 @@ export interface ICollectionModel {
   name: string
   icon: string
   created_at: Date
+
+  author?: IUserModel
+  bookmarks?: IBookmarkModel[]
 }
 
 export interface IBookmarkModel {
@@ -33,10 +42,24 @@ export interface IBookmarkModel {
   description: string
   icon: string
   created_at: Date
+
+  author?: IUserModel
+  collection?: ICollectionModel
+  tags?: IBookmarksOnTagsModel[]
 }
 
 export interface ITagModel {
   id: number
   author_id: number
   name: string
+
+  author?: IUserModel
+  bookmarks?: IBookmarksOnTagsModel[]
+}
+
+export interface IBookmarksOnTagsModel {
+  tag_id: number
+  bookmark_id: number
+  tag?: ITagModel
+  bookmark?: IBookmarkModel
 }

@@ -10,11 +10,13 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['success', 'close'])
+
 const isEditable = computed(() => props.id !== undefined && props.id > 0)
 const collection = reactive({
   name: '',
   icon: '',
 })
+
 const modal = useModal('collection.form')
 const toast = useToast()
 

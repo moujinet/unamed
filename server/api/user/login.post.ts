@@ -1,32 +1,40 @@
-import { USER_NOT_FOUND, USER_PASSWORD_NOT_MATCH } from '~/utils/errors'
-import { createSession } from '~/server/model/session'
-import { createHashedPassword, getUserByUsername } from '~/server/model/user'
+import type { IApiResponse } from '~/types'
+import { prisma } from '~/prisma/client'
+import {
+  USER_LOGIN_FAILED,
+  USER_NOT_FOUND,
+  USER_PASSWORD_NOT_MATCH,
+} from '~/utils/errors'
 
-interface UserLogin {
+interface ILoginUserBody {
   username: string
   password: string
 }
 
-interface UserToken {
+interface ILoginUserToken {
   token: string
 }
 
-export default defineEventHandler(async (event) => {
-  const { username, password } = await readBody<UserLogin>(event)
+export default defineEventHandler(async (event): IApiResponse<ILoginUserToken | null> => {
+  const { username, password } = await readBody<ILoginUserBody>(event)
 
-  if (!username || !password)
-    return error(USER_NOT_FOUND)
+  if (username.trim() === '' || password.trim() === '')
+    return error(USER_LOGIN_FAILED)
 
-  const user = await getUserByUsername(username.trim())
+  const user = await prisma.user.findUnique({
+    where: {
+      username: username.trim(),
+    },
+  })
 
   if (!user)
     return error(USER_NOT_FOUND)
 
-  const passwordHash = await createHashedPassword(password.trim())
-  if (user.password !== passwordHash)
+  const hashedPassword = await createHashedPassword(password.trim())
+  if (user.password !== hashedPassword)
     return error(USER_PASSWORD_NOT_MATCH)
 
-  return payload<UserToken>({
+  return payload<ILoginUserToken>({
     token: await createSession(user.id),
   })
 })

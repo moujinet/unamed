@@ -1,15 +1,15 @@
 import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
-import type { IApiResponse } from '~/types'
+import type { IApiPayload } from '~/types'
 
 export async function useFetchAPI<T>(
   url: string,
-  options: UseFetchOptions<IApiResponse<T>> = {},
+  options: UseFetchOptions<IApiPayload<T>> = {},
 ) {
   const toast = useToast()
   const { token } = useSession()
 
-  const defaults: UseFetchOptions<IApiResponse<T>> = {
+  const defaults: UseFetchOptions<IApiPayload<T>> = {
     headers: token.value
       ? { Authorization: `Bearer ${token.value}` }
       : {},

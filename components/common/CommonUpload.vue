@@ -11,18 +11,16 @@ async function handleUploaderChange(e: any) {
   const formData = new FormData()
   formData.append('file', files[0])
 
-  const { message, code, data } = await useFetchAPI<string>('/api/user/avatar/upload', {
+  const { message, code, data } = await useFetchAPI<string>('/api/user/avatar', {
     method: 'post',
     body: formData,
   })
 
-  if (code.value === SUCCESS) {
-    toast.success({ title: 'Successful' })
+  if (code.value === SUCCESS)
     emit('upload', data.value)
-  }
-  else {
+
+  else
     toast.error({ description: message.value })
-  }
 }
 </script>
 

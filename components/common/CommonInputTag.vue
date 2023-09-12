@@ -16,7 +16,7 @@ const isEmpty = computed(() => tags.value.length === 0 && inputValue.value === '
 const resolvedSuggestions = computed(() => suggestions.value.filter(tag => !tags.value.includes(tag)))
 
 const getDebouncedTags = useDebounceFn(async (search?: string) => {
-  const { code, data } = await getTags(search, 5)
+  const { code, data } = await getTags(search)
 
   if (code.value === SUCCESS)
     return data.value?.map(tag => tag.name)

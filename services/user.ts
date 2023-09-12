@@ -1,7 +1,7 @@
 export function useUser() {
   async function updateProfile(username: string, fullname: string) {
     const { code } = await useFetchAPI<null>('/api/user/profile', {
-      method: 'PUT',
+      method: 'patch',
       body: {
         username,
         fullname,
@@ -13,7 +13,7 @@ export function useUser() {
 
   async function changePassword(password: string, newPassword: string, newPasswordConfirm: string) {
     const { code } = await useFetchAPI<null>('/api/user/password', {
-      method: 'PUT',
+      method: 'patch',
       body: {
         password,
         newPassword,
@@ -26,7 +26,7 @@ export function useUser() {
 
   async function updateAvatar(avatar: string) {
     const { code } = await useFetchAPI<null>('/api/user/avatar', {
-      method: 'PUT',
+      method: 'patch',
       body: {
         avatar,
       },

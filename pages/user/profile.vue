@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const toast = useToast()
-const { updateProfile, updateAvatar } = useUser()
+const { updateProfile } = useUser()
 const { profile, logout, refresh } = useSession()
 
 const form = reactive({
@@ -26,7 +26,7 @@ async function handleSubmit() {
 }
 
 async function handleAvatarUpload(avatar?: string) {
-  if (avatar && await updateAvatar(avatar)) {
+  if (avatar) {
     toast.success({
       title: 'Update successful',
       afterAction: () => {

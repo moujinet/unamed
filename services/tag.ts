@@ -4,13 +4,16 @@ export async function getTag(id: number) {
   return await useFetchAPI<ITagModel>(`/api/tag/${id}`)
 }
 
-export async function getTags(search?: string, limit?: number) {
+export async function getTags(search?: string) {
   return await useFetchAPI<ITagModel[]>(
-    search ? `/api/tags/${search}` : '/api/tags',
+    '/api/tags',
     {
-      params: {
-        limit,
-      },
+      method: search ? 'post' : 'get',
+      body: search
+        ? {
+            keyword: search,
+          }
+        : undefined,
     },
   )
 }
@@ -26,7 +29,7 @@ export async function createTag(name: string) {
 
 export async function updateTag(id: number, name: string) {
   return await useFetchAPI<null>(`/api/tag/${id}`, {
-    method: 'PUT',
+    method: 'patch',
     body: {
       name,
     },

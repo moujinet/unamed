@@ -1,6 +1,7 @@
 export * from './model'
 export * from './payload'
 export * from './preference'
+export * from './metadata'
 
 export interface BuildInfo {
   version: string

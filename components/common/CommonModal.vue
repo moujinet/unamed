@@ -58,7 +58,7 @@ function handleEvent(type: 'ok' | 'cancel' | 'close') {
       <TransitionSlide :offset="[0, 20]">
         <div
           v-if="visible"
-          class="absolute bottom-0 left-0 border border-card sm:bottom-auto sm:left-50% sm:top-50% sm:translate-x--1/2 sm:translate-y--1/2"
+          class="fixed bottom-0 left-0 border border-card sm:bottom-auto sm:left-50% sm:top-50% sm:translate-x--1/2 sm:translate-y--1/2"
           z-110 w-full select-none rounded-t bg-card shadow-lg transition-all sm:w-500px sm:rounded
         >
           <header
