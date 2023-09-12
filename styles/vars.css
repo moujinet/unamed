@@ -1,6 +1,6 @@
 :root {
   /* #2DD2BE */
-  --c-primary: 45, 210, 190;
+  --c-primary: var(--color-theme, 45, 210, 190);
   /* #F06464 */
   --c-danger: 240, 100, 100;
 }

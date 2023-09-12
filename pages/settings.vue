@@ -11,7 +11,7 @@ const { isAdmin } = useSession()
       <CommonCell label="About" to="/settings/about" icon="i-ph-info" arrow />
     </CommonCellGroup>
 
-    <CommonCellGroup v-if="isAdmin" name="Administration">
+    <CommonCellGroup v-if="isHydrated && isAdmin" name="Administration">
       <CommonCell label="System" to="/settings/system" icon="i-ph-sliders-horizontal" arrow />
     </CommonCellGroup>
   </ContentSplitView>
