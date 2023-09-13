@@ -1,0 +1,251 @@
+{
+  "bookmark": {
+    "actions": {
+      "create": "新書籤",
+      "delete": "刪除書籤",
+      "edit": "編輯書籤"
+    },
+    "form": {
+      "collection": "收藏夾",
+      "description": "描述",
+      "icon": "圖標",
+      "name": "名稱",
+      "url": "網址"
+    },
+    "tips": {
+      "description": "書籤說明",
+      "name": "書籤名稱"
+    },
+    "title": "書籤"
+  },
+  "collection": {
+    "actions": {
+      "create": "新建收藏夾",
+      "delete": "刪除收藏夾",
+      "edit": "編輯收藏夾"
+    },
+    "form": {
+      "icon": "收藏夾圖標",
+      "name": "收藏夾名稱"
+    },
+    "title": "收藏夾"
+  },
+  "common": {
+    "actions": {
+      "cancel": "取消",
+      "confirm": "確認",
+      "create": "創建",
+      "delete": "刪除",
+      "loading-more": "加載更多...",
+      "ok": "好的",
+      "optional": "可選項",
+      "reload": "刷新頁面",
+      "reloading": "重新加載中",
+      "save": "保存",
+      "search": "搜索",
+      "update": "更新"
+    },
+    "messages": {
+      "failed": "失敗",
+      "required": "{name} 為必填項",
+      "success": "成功"
+    },
+    "questions": {
+      "delete": "您確定要刪除嗎？"
+    },
+    "tips": {
+      "example": "例如: {example}",
+      "loading": "加載中...",
+      "not-owner": "你不是所有者",
+      "required": "請輸入{name}",
+      "select": "請選擇",
+      "select-setting": "選擇一個設置"
+    }
+  },
+  "errors": {
+    "bookmark": {
+      "already-exists": "書籤已存在",
+      "create-failed": "書籤創建失敗",
+      "delete-failed": "書籤刪除失敗",
+      "not-found": "找不到書籤",
+      "update-failed": "書籤更新失敗",
+      "url-is-required": "書籤網址為必填項"
+    },
+    "collection": {
+      "already-exists": "收藏夾已存在",
+      "create-failed": "收藏夾創建失敗",
+      "delete-failed": "收藏夾刪除失敗",
+      "has-bookmarks": "收藏夾存在書籤",
+      "not-found": "未找到收藏夾",
+      "update-failed": "收藏夾更新失敗"
+    },
+    "common": {
+      "default-message": "出了些問題",
+      "not-found": "找不到網頁",
+      "title": "錯誤"
+    },
+    "failed": "失敗",
+    "ok": "好的",
+    "tag": {
+      "already-exists": "標籤已存在",
+      "create-failed": "標籤創建失敗",
+      "delete-failed": "標籤刪除失敗",
+      "has-bookmarks": "標籤有書籤",
+      "not-found": "未找到標籤",
+      "update-failed": "標籤更新失敗"
+    },
+    "upload": {
+      "file-type-not-allow": "上傳文件類型不允許",
+      "no-file": "沒有上傳文件"
+    },
+    "user": {
+      "already-exists": "用戶已存在",
+      "is-not-exists": "用戶不存在",
+      "login-failed": "用戶登錄失敗",
+      "password-do-not-match": "用戶密碼不匹配",
+      "passwords-are-not-the-same-twice": "用戶密碼兩次不相同",
+      "profile-update-failed": "用戶個人資料更新失敗",
+      "registration-failed": "用戶註冊失敗"
+    }
+  },
+  "nav": {
+    "bottom": {
+      "bookmarks": "書籤",
+      "collections": "收藏夾",
+      "more": "更多的",
+      "my": "我的",
+      "settings": "設置",
+      "tags": "標籤"
+    },
+    "settings": {
+      "about": "關於",
+      "groups": {
+        "administration": "管理者",
+        "settings": "設置"
+      },
+      "interface": "界面",
+      "language": "語言",
+      "preferences": "首選項",
+      "sponsors": "贊助商",
+      "system": "系統"
+    },
+    "sider": {
+      "bookmarks": "所有書籤",
+      "collections": "收藏夾",
+      "profile": "個人資料",
+      "settings": "設置",
+      "tags": "標籤"
+    },
+    "title": "unamed",
+    "user": {
+      "groups": {
+        "account": "帳戶"
+      },
+      "profile": "個人資料",
+      "security": "安全性"
+    }
+  },
+  "settings": {
+    "about": {
+      "built": "構建於",
+      "docs": "文檔",
+      "homepage": "主頁",
+      "repo": "代碼倉庫",
+      "slogan": "輕量級、自託管的書籤 Web 服務。",
+      "version": "版本"
+    },
+    "interface": {
+      "color-mode": "色彩模式",
+      "color-mode-dark": "深色",
+      "color-mode-light": "淺色",
+      "color-mode-system": "系統",
+      "color-theme": "顏色主題",
+      "view-mode": "查看模式",
+      "view-mode-grid": "網格視圖",
+      "view-mode-list": "列表視圖"
+    },
+    "language": {
+      "display": "顯示語言"
+    },
+    "preferences": {
+      "click-count": "點擊計數",
+      "collection-icon": "集合圖標",
+      "global-shortcuts": "全局鍵盤快捷鍵",
+      "groups": {
+        "display": "展示",
+        "experimental": "實驗性功能",
+        "general": "通用"
+      },
+      "opengraph-saving": "OpenGraph 保存",
+      "qrcode": "二維碼",
+      "source-tags": "自動來源標籤",
+      "virtual-scrolling": "虛擬滾動"
+    },
+    "system": {
+      "attachments": {
+        "upload-path": "上傳路徑",
+        "upload-path-format": "路徑格式"
+      },
+      "general": {
+        "app-domain": "自定義域名",
+        "app-name": "應用名稱"
+      },
+      "groups": {
+        "attachments": "附件",
+        "general": "一般的"
+      }
+    }
+  },
+  "user": {
+    "actions": {
+      "change-password": "更改密碼",
+      "login": "登錄",
+      "logout": "登出",
+      "register": "註冊",
+      "upload": "上傳您的頭像"
+    },
+    "form": {
+      "current-password": "當前密碼",
+      "fullname": "全名",
+      "new-password": "新密碼",
+      "password": "密碼",
+      "re-type-new-password": "重新輸入新密碼",
+      "re-type-password": "重新輸入密碼",
+      "username": "用戶名"
+    },
+    "groups": {
+      "avatar": "用戶頭像",
+      "password": "密碼",
+      "profile": "公開資料",
+      "session": "會話"
+    },
+    "login": {
+      "messages": {
+        "description": "祝您旅途愉快！",
+        "slogan": "收集並整理您喜愛的網站並提供更多離線功能。",
+        "title": "歡迎！",
+        "welcome": "歡迎您登錄！"
+      },
+      "title": "還沒有帳戶？"
+    },
+    "logout": {
+      "messages": {
+        "description": "再見！\n\n👋",
+        "title": "下次見！"
+      }
+    },
+    "messages": {
+      "change-password-success": "修改密碼成功",
+      "login-again": "您需要重新登錄",
+      "password-must-be-different": "當前密碼和新密碼必須不同",
+      "password-not-same": "新密碼和重新輸入新密碼必須相同"
+    },
+    "register": {
+      "messages": {
+        "description": "您現在可以登錄了！",
+        "title": "註冊成功"
+      },
+      "title": "已經有賬戶嗎？"
+    }
+  }
+}

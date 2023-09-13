@@ -11,17 +11,19 @@ watch(colorModeValue, (value) => {
 </script>
 
 <template>
-  <ContentView view="list" title="Interface" icon="i-ph-airplay" fixed-width>
-    <CommonBlock name="View Mode">
-      <CommonRadioGroup v-model="viewModeValue" :options="ViewModeOptions" bordered block />
-    </CommonBlock>
+  <ClientOnly>
+    <ContentView view="list" :title="$t('nav.settings.interface')" icon="i-ph-airplay" fixed-width>
+      <CommonBlock :name="$t('settings.interface.view-mode')">
+        <CommonRadioGroup v-model="viewModeValue" :options="ViewModeOptions" bordered block />
+      </CommonBlock>
 
-    <CommonBlock name="Color Mode">
-      <CommonRadioGroup v-model="colorModeValue" :options="ColorModeOptions" bordered block />
-    </CommonBlock>
+      <CommonBlock :name="$t('settings.interface.color-mode')">
+        <CommonRadioGroup v-model="colorModeValue" :options="ColorModeOptions" bordered block />
+      </CommonBlock>
 
-    <CommonBlock name="Color Theme">
-      <CommonColorPicker v-model="colorThemeValue" :options="ColorThemeOptions" />
-    </CommonBlock>
-  </ContentView>
+      <CommonBlock :name="$t('settings.interface.color-theme')">
+        <CommonColorPicker v-model="colorThemeValue" :options="ColorThemeOptions" />
+      </CommonBlock>
+    </ContentView>
+  </ClientOnly>
 </template>

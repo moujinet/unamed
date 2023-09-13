@@ -1,4 +1,13 @@
 <script lang="ts" setup>
+const { isLoggedIn } = useSession()
+const loginModal = useModal('user.login.form')
+
+function handleMyClick() {
+  if (isLoggedIn.value)
+    navigateTo('/user/profile')
+  else
+    loginModal.value = true
+}
 </script>
 
 <template>
@@ -12,53 +21,40 @@
         to="/bookmarks"
         class="nav"
         :class="$route.fullPath.startsWith('/bookmarks') ? 'text-primary' : ''"
-        active-class="text-primary"
       >
         <CommonIcon name="i-ph-bookmarks" size="24" />
         <span text-3>
-          Bookmarks
+          {{ $t('nav.bottom.bookmarks') }}
         </span>
       </NuxtLink>
       <NuxtLink
         to="/collections"
         class="nav"
         :class="$route.fullPath.startsWith('/collections') ? 'text-primary' : ''"
-        active-class="text-primary"
       >
         <CommonIcon name="i-ph-stack" size="24" />
         <span text-3>
-          Collections
-        </span>
-      </NuxtLink>
-      <NuxtLink
-        to="/tags"
-        class="nav"
-        :class="$route.fullPath.startsWith('/tags') ? 'text-primary' : ''"
-        active-class="text-primary"
-      >
-        <CommonIcon name="i-ph-hash" size="24" />
-        <span text-3>
-          Tags
+          {{ $t('nav.bottom.collections') }}
         </span>
       </NuxtLink>
       <NuxtLink
         to="/settings"
         class="nav"
         :class="$route.fullPath.startsWith('/settings') ? 'text-primary' : ''"
-        active-class="text-primary"
       >
         <CommonIcon name="i-ph-gear-six" size="24" />
         <span text-3>
-          Settings
+          {{ $t('nav.bottom.settings') }}
         </span>
       </NuxtLink>
       <NuxtLink
         class="nav"
-        active-class="text-primary"
+        :class="$route.fullPath.startsWith('/user') ? 'text-primary' : ''"
+        @click="handleMyClick"
       >
-        <CommonIcon name="i-ph-dots-three-circle" size="24" />
+        <CommonIcon name="i-ph-user-circle" size="24" />
         <span text-3>
-          More
+          {{ $t('nav.bottom.my') }}
         </span>
       </NuxtLink>
     </div>
@@ -67,6 +63,6 @@
 
 <style scoped>
 .nav {
-  --at-apply: flex-(~ col center) w-1/5;
+  --at-apply: flex-(~ col center) w-1/4;
 }
 </style>

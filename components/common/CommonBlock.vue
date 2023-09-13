@@ -13,7 +13,6 @@ defineProps<{
         {{ name }}
       </h3>
     </header>
-
     <slot />
   </div>
 </template>

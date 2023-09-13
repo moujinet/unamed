@@ -17,14 +17,6 @@ export function useModalRegister() {
   }
 }
 
-/**
- * Use a modal
- *
- * const loginModal = useModal('login')
- * loginModal = true
- *
- * @param name string
- */
 export function useModal(name: string) {
   const register = useModalRegister()
   const modal = register.has(name) ? useState<boolean>(name) : useState<boolean>(name, () => false)

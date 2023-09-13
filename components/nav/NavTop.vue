@@ -11,10 +11,10 @@ function goTop() {
   <Teleport to="body">
     <div
       :class="y > height / 2 ? 'flex-(~ center)' : 'hidden'"
-      class="fixed bottom-20 right-4 z-200 h-14 w-14 rounded-full bg-sider op-70 sm:bottom-4 active:op-100"
+      class="fixed bottom-20 right-4 z-100 h-14 w-14 rounded-full bg-primary op-70 sm:bottom-4 active:op-100"
       @click="goTop()"
     >
-      <CommonIcon name="i-ph-rocket" size="24" class="text-primary" />
+      <CommonIcon name="i-ph-rocket" size="24" class="text-white" />
     </div>
   </Teleport>
 </template>

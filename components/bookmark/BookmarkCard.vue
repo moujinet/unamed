@@ -34,18 +34,18 @@ function handleDelete(id: number) {
         </NuxtLink>
         <CommonDropdown>
           <CommonDropdownItem
-            label="Edit Bookmark"
+            :label="$t('bookmark.actions.edit')"
             icon="i-ph-pencil"
             @click="handleEdit(bookmark.id)"
           />
           <CommonPopover
             color="danger"
-            question="Are you sure want to delete?"
-            confirm-text="Delete Bookmark"
+            :question="$t('common.questions.delete')"
+            :confirm-text="$t('bookmark.actions.delete')"
             icon="i-ph-trash"
             @confirm="handleDelete(bookmark.id)"
           >
-            <CommonDropdownItem label="Delete" icon="i-ph-trash" danger />
+            <CommonDropdownItem :label="$t('common.actions.delete')" icon="i-ph-trash" danger />
           </CommonPopover>
         </CommonDropdown>
       </div>

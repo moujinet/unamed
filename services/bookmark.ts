@@ -45,26 +45,22 @@ export async function loadBookmarkMeta(url: string): Promise<IMetaData> {
   return defaultValue
 }
 
-export async function createBookmark(data: IBookmarkFormData): Promise<boolean> {
-  const { code } = await useFetchAPI<null>('/api/bookmark', {
+export async function createBookmark(data: IBookmarkFormData) {
+  return await useFetchAPI<null>('/api/bookmark', {
     method: 'POST',
     body: {
       ...data,
     },
   })
-
-  return code.value === SUCCESS
 }
 
-export async function updateBookmark(id: number, data: IBookmarkFormData): Promise<boolean> {
-  const { code } = await useFetchAPI<null>(`/api/bookmark/${id}`, {
+export async function updateBookmark(id: number, data: IBookmarkFormData) {
+  return await useFetchAPI<null>(`/api/bookmark/${id}`, {
     method: 'PATCH',
     body: {
       ...data,
     },
   })
-
-  return code.value === SUCCESS
 }
 
 export async function deleteBookmark(id: number): Promise<boolean> {

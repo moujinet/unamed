@@ -12,7 +12,7 @@ const { isLoggedIn } = useSession()
         overflow="x-hidden y-auto"
         max-w-full min-h-full
       >
-        <NavTitle />
+        <NavTitle v-if="isHydrated" />
         <NavSider />
       </div>
 

@@ -12,9 +12,7 @@ const props = withDefaults(defineProps<{
   header?: boolean
   footer?: boolean
 }>(), {
-  okText: 'OK',
   okButtonColor: 'primary',
-  cancelText: 'Cancel',
   underline: 'both',
   header: true,
   footer: true,
@@ -23,6 +21,7 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['ok', 'cancel', 'close'])
+
 const visible = defineModel<boolean>('visible', { default: false })
 
 watch(visible, (val) => {
@@ -88,10 +87,10 @@ function handleEvent(type: 'ok' | 'cancel' | 'close') {
           >
             <slot name="footer">
               <CommonButton class="lt-sm:(w-full py-4!)" :auto="false" :disabled="loading" @click="handleEvent('cancel')">
-                {{ cancelText }}
+                {{ cancelText || $t('common.actions.cancel') }}
               </CommonButton>
               <CommonButton class="lt-sm:(w-full py-4!)" :auto="false" :color="okButtonColor" :loading="loading" @click="handleEvent('ok')">
-                {{ okText }}
+                {{ okText || $t('common.actions.ok') }}
               </CommonButton>
             </slot>
           </footer>

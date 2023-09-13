@@ -1,45 +1,6 @@
 import { isDevelopment } from 'std-env'
 
 export default defineNuxtConfig({
-  app: {
-    keepalive: true,
-    rootId: 'app',
-    head: {
-      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
-      htmlAttrs: {
-        lang: 'en',
-      },
-      link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-      ],
-      meta: [
-        {
-          name: 'description',
-          content: 'A lightweight, self-hosted bookmarking web service.',
-        },
-        {
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
-        },
-        { property: 'og:title', content: 'unamed' },
-        {
-          property: 'og:description',
-          content: 'A lightweight, self-hosted bookmarking web service.',
-        },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: '/unamed-og.png' },
-        { property: 'og:image:width', content: '3800' },
-        { property: 'og:image:height', content: '1900' },
-        { property: 'og:site_name', content: 'unamed' },
-        { property: 'twitter:site', content: '@moujinet' },
-        { property: 'twitter:title', content: 'unamed' },
-        { property: 'twitter:card', content: 'summary_large_image' },
-      ],
-    },
-  },
-
   modules: [
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
@@ -84,6 +45,45 @@ export default defineNuxtConfig({
     },
   },
 
+  app: {
+    keepalive: true,
+    rootId: 'app',
+    head: {
+      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
+      htmlAttrs: {
+        lang: 'en-US',
+      },
+      link: [
+        { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      meta: [
+        {
+          name: 'description',
+          content: 'A lightweight, self-hosted bookmarking web service.',
+        },
+        {
+          name: 'apple-mobile-web-app-status-bar-style',
+          content: 'black-translucent',
+        },
+        { property: 'og:title', content: 'unamed' },
+        {
+          property: 'og:description',
+          content: 'A lightweight, self-hosted bookmarking web service.',
+        },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:image', content: '/unamed-og.png' },
+        { property: 'og:image:width', content: '3800' },
+        { property: 'og:image:height', content: '1900' },
+        { property: 'og:site_name', content: 'unamed' },
+        { property: 'twitter:site', content: '@moujinet' },
+        { property: 'twitter:title', content: 'unamed' },
+        { property: 'twitter:card', content: 'summary_large_image' },
+      ],
+    },
+  },
+
   nitro: {
     experimental: {
       asyncContext: true,
@@ -103,9 +103,19 @@ export default defineNuxtConfig({
         baseURL: '/fonts',
       },
       {
-        dir: '~/public/upload',
+        dir: '~/public/json',
         maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
-        baseURL: '/upload',
+        baseURL: '/json',
+      },
+      {
+        dir: '~/public/locales',
+        maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
+        baseURL: '/locales',
+      },
+      {
+        dir: '~/public/avatars',
+        maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
+        baseURL: '/avatars',
       },
     ],
   },

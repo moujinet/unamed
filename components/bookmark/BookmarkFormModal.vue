@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
 import type { IOption } from '~/types'
 import type { IBookmarkFormData } from '~/services/bookmark'
 
@@ -13,6 +14,7 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['success', 'close'])
+const { t } = useI18n()
 
 const modal = useModal('bookmark.form')
 const bookmark = reactive<IBookmarkFormData>({
@@ -96,30 +98,33 @@ async function handleUrlChange() {
 
 async function handleSubmit() {
   if (bookmark.url.trim() === '')
-    return toast.error({ title: 'URL is required' })
+    return toast.error({ title: t('common.messages.required', { name: t('bookmark.form.url') }) })
   if (bookmark.collection_id === 0)
-    return toast.error({ title: 'Collection is required' })
+    return toast.error({ title: t('common.messages.required', { name: t('bookmark.form.collection') }) })
 
   if (bookmark.name.trim() === '')
     handleUrlChange()
 
   showOptional.value = true
 
-  const result = isEditable.value
+  const { code, error } = isEditable.value
     ? await updateBookmark(props.id!, bookmark)
     : await createBookmark(bookmark)
 
-  if (result) {
+  if (code.value === SUCCESS) {
     emit('success')
     emit('close')
 
     if (isEditable.value)
       modal.value = false
 
-    return toast.success({ title: 'Successful', afterAction: () => resetForm() })
+    return toast.success({ title: t('common.messages.success'), afterAction: () => resetForm() })
   }
 
-  return toast.error({ title: 'Failed' })
+  return toast.error({
+    title: t('common.messages.failed'),
+    description: t(error.value?.message ?? ''),
+  })
 }
 </script>
 
@@ -133,26 +138,26 @@ async function handleSubmit() {
     :icon="icon"
     :title="title"
     :loading="loading"
-    :ok-text="isEditable ? 'Update' : 'Create'"
+    :ok-text="isEditable ? $t('common.actions.update') : $t('common.actions.create')"
     @ok="handleSubmit"
     @close="emit('close')"
   >
     <div flex="~ col gap-y-4">
-      <CommonFormItem v-if="bookmark.icon" label="Favicon">
+      <CommonFormItem v-if="bookmark.icon" :label="$t('bookmark.form.icon')">
         <NuxtImg :src="bookmark.icon" preset="favicon" loading="lazy" class="h-12 w-12 rounded-lg" />
       </CommonFormItem>
 
-      <CommonFormItem label="Collection" required>
+      <CommonFormItem :label="$t('bookmark.form.collection')" required>
         <CommonSelect
           v-model="collectionId"
-          placeholder="Please select"
+          :placeholder="$t('common.tips.select')"
           :options="collections"
           :disabled="collections.length === 0 || fetching"
         />
       </CommonFormItem>
 
-      <CommonFormItem label="URL" required>
-        <CommonInput v-model="bookmark.url" :loading="fetching" placeholder="i.g. https://example.com" @change="handleUrlChange" />
+      <CommonFormItem :label="$t('bookmark.form.url')" required>
+        <CommonInput v-model="bookmark.url" :loading="fetching" :placeholder="$t('common.tips.example', { example: 'https://www.example.com' })" @change="handleUrlChange" />
       </CommonFormItem>
 
       <!--
@@ -164,14 +169,15 @@ async function handleSubmit() {
 
       <details :open="showOptional">
         <summary text="sm">
-          Optional
+          {{ $t('common.actions.optional') }}
         </summary>
+
         <div flex="~ col gap-y-4" p="y-4">
-          <CommonFormItem label="Name">
-            <CommonInput v-model="bookmark.name" placeholder="Bookmark name" />
+          <CommonFormItem :label="$t('bookmark.form.name')">
+            <CommonInput v-model="bookmark.name" :placeholder="$t('bookmark.tips.name')" />
           </CommonFormItem>
-          <CommonFormItem label="Description">
-            <CommonInput v-model="bookmark.description" placeholder="Bookmark description" />
+          <CommonFormItem :label="$t('bookmark.form.description')">
+            <CommonInput v-model="bookmark.description" :placeholder="$t('bookmark.tips.description')" />
           </CommonFormItem>
         </div>
       </details>

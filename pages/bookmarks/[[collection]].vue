@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
 import { hideAllPoppers } from 'floating-vue'
 
 const editId = ref(0)
 const loginModal = useModal('user.login.form')
 const bookmarkModal = useModal('bookmark.form')
 const { isLoggedIn } = useSession()
+const { t } = useI18n()
 
 const toast = useToast()
 const route = useRoute()
@@ -20,20 +22,24 @@ function handleEdit(id: number) {
 
 async function handleDelete(id: number) {
   if (await deleteBookmark(id)) {
-    toast.success({ title: 'Successful' })
+    toast.success({ title: t('common.messages.success') })
     refresh()
   }
 }
 </script>
 
 <template>
-  <ContentView title="Bookmarks" icon="i-ph-bookmarks" hidden-back>
+  <ContentView icon="i-ph-bookmarks" hidden-back>
+    <template v-if="isHydrated" #title>
+      {{ $t('bookmark.title') }}
+    </template>
+
     <template #header>
       <template v-if="isLoggedIn">
         <BookmarkFormModal
           v-if="isHydrated"
           :id="editId"
-          :title="editId ? 'Edit Bookmark' : 'New Bookmark'"
+          :title="editId ? $t('bookmark.actions.edit') : $t('bookmark.actions.create')"
           icon="i-ph-bookmark-simple"
           placement="bottom"
           @success="refresh"
@@ -45,13 +51,13 @@ async function handleDelete(id: number) {
             size="sm"
             icon="i-ph-bookmark-simple"
           >
-            New Bookmark
+            {{ $t('bookmark.actions.create') }}
           </CommonButton>
         </BookmarkFormModal>
       </template>
 
       <template v-else>
-        <CommonTooltip v-if="isHydrated" content="User Login" placement="right" @click="loginModal = true">
+        <CommonTooltip v-if="isHydrated" :content="$t('user.actions.login')" placement="right" @click="loginModal = true">
           <CommonButton
             color="primary"
             type="plain"
@@ -77,6 +83,6 @@ async function handleDelete(id: number) {
       />
     </div>
 
-    <CommonLoading :loading="pending" text="Loading..." />
+    <CommonLoading :loading="pending" :text="isHydrated ? $t('common.tips.loading') : ''" />
   </ContentView>
 </template>

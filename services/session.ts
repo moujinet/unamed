@@ -66,7 +66,7 @@ export function useSession() {
 
     if (code.value === SUCCESS) {
       clear()
-      return navigateTo('/')
+      return true
     }
 
     return false

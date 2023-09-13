@@ -38,7 +38,7 @@ const { profile } = useSession()
       </div>
     </NuxtLink>
     <slot>
-      <CommonTooltip content="Profile" placement="right" :disabled="isDesktop">
+      <CommonTooltip :content="$t('nav.sider.profile')" :placement="isDesktop ? 'top' : 'right'" :disabled="isMobile">
         <NuxtLink to="/user/profile" :class="$route.fullPath.startsWith('/user') ? 'text-primary' : ''" hover:text-primary>
           <CommonIcon name="i-ph-sliders-horizontal" size="20" />
         </NuxtLink>

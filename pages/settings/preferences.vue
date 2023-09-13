@@ -9,39 +9,41 @@ const globalKeyboardShortcuts = usePreference('experimental.globalKeyboardShortc
 </script>
 
 <template>
-  <ContentView view="list" title="Preferences" icon="i-ph-wrench" fixed-width>
-    <CommonBlock name="General">
-      <CommonCell label="OpenGraph Saving" collapsed>
-        <CommonSwitch v-model="openGraphSaving" />
-      </CommonCell>
-    </CommonBlock>
+  <ClientOnly>
+    <ContentView view="list" :title="$t('nav.settings.preferences')" icon="i-ph-wrench" fixed-width>
+      <CommonBlock :name="$t('settings.preferences.groups.general')">
+        <CommonCell :label="$t('settings.preferences.opengraph-saving')" collapsed>
+          <CommonSwitch v-model="openGraphSaving" />
+        </CommonCell>
+      </CommonBlock>
 
-    <CommonBlock name="Display">
-      <CommonCell label="Collection Icon" collapsed>
-        <CommonSwitch v-model="collectionIcon" />
-      </CommonCell>
+      <CommonBlock :name="$t('settings.preferences.groups.display')">
+        <CommonCell :label="$t('settings.preferences.collection-icon')" collapsed>
+          <CommonSwitch v-model="collectionIcon" />
+        </CommonCell>
 
-      <CommonCell label="Click Count" collapsed>
-        <CommonSwitch v-model="clickCount" />
-      </CommonCell>
+        <CommonCell :label="$t('settings.preferences.click-count')" collapsed>
+          <CommonSwitch v-model="clickCount" />
+        </CommonCell>
 
-      <CommonCell label="QRCode" collapsed>
-        <CommonSwitch v-model="qrCode" />
-      </CommonCell>
-    </CommonBlock>
+        <CommonCell :label="$t('settings.preferences.qrcode')" collapsed>
+          <CommonSwitch v-model="qrCode" />
+        </CommonCell>
+      </CommonBlock>
 
-    <CommonBlock name="Experimental" icon="i-ph-compass-tool">
-      <CommonCell label="Virtual Scrolling" collapsed>
-        <CommonSwitch v-model="virtualScrolling" />
-      </CommonCell>
+      <CommonBlock :name="$t('settings.preferences.groups.experimental')" icon="i-ph-compass-tool">
+        <CommonCell :label="$t('settings.preferences.virtual-scrolling')" collapsed>
+          <CommonSwitch v-model="virtualScrolling" />
+        </CommonCell>
 
-      <CommonCell label="Automatically Source Tags" collapsed>
-        <CommonSwitch v-model="automaticallySourceTags" />
-      </CommonCell>
+        <CommonCell :label="$t('settings.preferences.source-tags')" collapsed>
+          <CommonSwitch v-model="automaticallySourceTags" />
+        </CommonCell>
 
-      <CommonCell label="Global Keyboard Shortcuts" collapsed>
-        <CommonSwitch v-model="globalKeyboardShortcuts" />
-      </CommonCell>
-    </CommonBlock>
-  </ContentView>
+        <CommonCell :label="$t('settings.preferences.global-shortcuts')" collapsed>
+          <CommonSwitch v-model="globalKeyboardShortcuts" />
+        </CommonCell>
+      </CommonBlock>
+    </ContentView>
+  </ClientOnly>
 </template>

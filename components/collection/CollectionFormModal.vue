@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+
 const props = withDefaults(defineProps<{
   id?: number
   icon?: string
@@ -10,6 +12,7 @@ const props = withDefaults(defineProps<{
 })
 
 const emit = defineEmits(['success', 'close'])
+const { t } = useI18n()
 
 const isEditable = computed(() => props.id !== undefined && props.id > 0)
 const collection = reactive({
@@ -32,7 +35,6 @@ watch(modal, async (newVal) => {
       }
       else {
         modal.value = false
-        toast.error({ title: 'Collection not found' })
       }
     }
     else {
@@ -44,11 +46,9 @@ watch(modal, async (newVal) => {
 
 async function handleSubmit() {
   if (collection.name.trim() === '')
-    return toast.error({ title: 'Collection name is required' })
-  if (collection.icon.trim() === '')
-    return toast.error({ title: 'Collection icon is required' })
+    return toast.error({ title: t('common.messages.required', { name: t('collection.form.name') }) })
 
-  const { code } = isEditable.value
+  const { code, error } = isEditable.value
     ? await updateCollection(props.id!, collection.name, collection.icon)
     : await createCollection(collection.name, collection.icon)
 
@@ -56,7 +56,13 @@ async function handleSubmit() {
     emit('success')
     emit('close')
     modal.value = false
-    toast.success({ title: 'Successful' })
+    toast.success({ title: t('common.messages.success') })
+  }
+  else {
+    toast.error({
+      title: t('common.messages.failed'),
+      description: t(error.value?.message ?? ''),
+    })
   }
 }
 </script>
@@ -70,11 +76,11 @@ async function handleSubmit() {
     v-model:visible="modal"
     :icon="icon"
     :title="title"
-    ok-text="Create"
+    :ok-text="$t('common.actions.create')"
     @ok="handleSubmit"
     @close="emit('close')"
   >
-    <CommonFormItem label="Collection Name" required>
+    <CommonFormItem :label="$t('collection.form.name')" required>
       <CommonInput v-model="collection.name" allow-clear @keyup.enter="handleSubmit">
         <template #prepend>
           <CommonIconPicker v-model="collection.icon" />

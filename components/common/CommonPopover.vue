@@ -10,8 +10,6 @@ withDefaults(defineProps<{
 }>(), {
   color: 'primary',
   icon: 'i-ph-info',
-  confirmText: 'Confirm',
-  cancelText: 'Cancel',
 })
 const emit = defineEmits(['cancel', 'confirm'])
 
@@ -40,10 +38,10 @@ function handleConfirm() {
         </div>
         <div flex="~ justify-end v-center gap-x-4">
           <CommonButton :size="isMobile ? 'md' : 'sm'" :block="isMobile" @click="handleCancel">
-            {{ cancelText }}
+            {{ cancelText || $t('common.actions.cancel') }}
           </CommonButton>
           <CommonButton :size="isMobile ? 'md' : 'sm'" :color="color" :block="isMobile" @click="handleConfirm">
-            {{ confirmText }}
+            {{ confirmText || $t('common.actions.confirm') }}
           </CommonButton>
         </div>
       </div>

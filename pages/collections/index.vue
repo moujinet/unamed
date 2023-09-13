@@ -1,15 +1,13 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
 import { hideAllPoppers } from 'floating-vue'
-
-definePageMeta({
-  middleware: 'auth',
-})
 
 const editId = ref(0)
 const modal = useModal('collection.form')
 const toast = useToast()
 const { data: collections, refresh, pending } = await getCollections()
 const { hasUserPermission, hasDeletePermission } = useAuth()
+const { t } = useI18n()
 
 function handleEdit(id: number) {
   editId.value = id
@@ -19,18 +17,23 @@ function handleEdit(id: number) {
 
 async function handleDelete(id: number) {
   if (await deleteCollection(id)) {
-    toast.success({ title: 'Successful' })
+    toast.success({ title: t('common.messages.success') })
     refresh()
   }
 }
 </script>
 
 <template>
-  <ContentView title="Collections" icon="i-ph-stack">
+  <ContentView icon="i-ph-stack">
+    <template v-if="isHydrated" #title>
+      {{ $t('collection.title') }}
+    </template>
+
     <template #header>
       <CollectionFormModal
+        v-if="isHydrated"
         :id="editId"
-        :title="editId ? 'Edit Collection' : 'New Collection'"
+        :title="editId ? $t('collection.actions.edit') : $t('collection.actions.create')"
         :icon="editId ? 'i-ph-folder-simple' : 'i-ph-folder-simple-plus'"
         placement="bottom"
         @close="editId = 0"
@@ -42,12 +45,12 @@ async function handleDelete(id: number) {
           size="sm"
           icon="i-ph-folder-simple-plus"
         >
-          New Collection
+          {{ $t('collection.actions.create') }}
         </CommonButton>
       </CollectionFormModal>
     </template>
 
-    <CommonLoading :loading="pending" text="Loading..." />
+    <CommonLoading :loading="pending" :text="isHydrated ? $t('common.tips.loading') : ''" />
 
     <div
       grid="~ cols-2 xl:cols-3 2xl:cols-4"
@@ -83,23 +86,25 @@ async function handleDelete(id: number) {
             <CommonDropdown>
               <CommonDropdownItem
                 v-if="hasUserPermission(collection.author_id)"
-                label="Edit Collection"
+                :label="$t('collection.actions.edit')"
                 icon="i-ph-pencil"
                 @click="handleEdit(collection.id)"
               />
-              <CommonDropdownItem v-else label="You are not owner" icon="i-ph-info" :link="false" />
+              <CommonDropdownItem v-else :label="$t('common.tips.not-owner')" icon="i-ph-info" :link="false" />
               <CommonPopover
                 v-if="hasDeletePermission()"
                 color="danger"
-                question="Are you sure want to delete?"
-                confirm-text="Delete Collection"
+                :question="$t('common.questions.delete')"
+                confirm-text="$t('collection.actions.delete')"
                 icon="i-ph-trash"
                 @confirm="handleDelete(collection.id)"
               >
-                <CommonDropdownItem label="Delete" icon="i-ph-trash" danger />
+                <CommonDropdownItem :label="$t('common.actions.delete')" icon="i-ph-trash" danger />
               </CommonPopover>
+              <!--
               <div v-if="hasUserPermission(collection.author_id)" border="b base" my-2 />
               <CommonDropdownItem label="Statistics" icon="i-ph-activity" />
+              -->
             </CommonDropdown>
           </div>
         </div>

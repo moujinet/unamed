@@ -1,3 +1,3 @@
 <template>
-  <CommonEmpty icon="i-ph-gear-six" description="Select a setting" />
+  <CommonEmpty icon="i-ph-gear-six" :description="isHydrated ? $t('common.tips.select-setting') : ''" />
 </template>

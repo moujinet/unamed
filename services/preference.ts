@@ -1,4 +1,13 @@
-import type { IOption, IPreferences, TColorMode, TColorTheme, TLanguage, TPathFormat, TViewMode } from '~/types'
+import type {
+  IOption,
+  IPreferences,
+  TColorMode,
+  TColorTheme,
+  TLanguage,
+  TPathFormat,
+  TViewMode,
+} from '~/types'
+import { locales } from '~/config/i18n'
 
 export const DEFAULT_PREFERENCES: IPreferences = {
   'interface.viewMode': 'grid',
@@ -21,14 +30,14 @@ export const DEFAULT_PREFERENCES: IPreferences = {
 }
 
 export const ViewModeOptions: IOption<TViewMode>[] = [
-  { icon: 'ph:squares-four', label: 'Grid View', value: 'grid' },
-  { icon: 'ph:rows', label: 'List View', value: 'list' },
+  { icon: 'ph:squares-four', label: 'settings.interface.view-mode-grid', value: 'grid' },
+  { icon: 'ph:rows', label: 'settings.interface.view-mode-list', value: 'list' },
 ]
 
 export const ColorModeOptions: IOption<TColorMode>[] = [
-  { icon: 'ph:moon', label: 'Dark', value: 'dark' },
-  { icon: 'ph:sun', label: 'Light', value: 'light' },
-  { icon: 'ph:devices', label: 'System', value: 'system' },
+  { icon: 'ph:moon', label: 'settings.interface.color-mode-dark', value: 'dark' },
+  { icon: 'ph:sun', label: 'settings.interface.color-mode-light', value: 'light' },
+  { icon: 'ph:devices', label: 'settings.interface.color-mode-system', value: 'system' },
 ]
 
 export const ColorThemeOptions: IOption<TColorTheme>[] = [
@@ -44,11 +53,7 @@ export const PathFormatOptions: IOption<TPathFormat>[] = [
   { label: 'YYYY-MM', value: 'YYYY-MM' },
 ]
 
-export const LanguageOptions: IOption<TLanguage>[] = [
-  { label: 'English (EN)', value: 'en-US' },
-  { label: '中文 (简体) - ZH', value: 'zh-CN' },
-  { label: '中文 (繁體) - ZH', value: 'zh-TW' },
-]
+export const LanguageOptions: IOption<TLanguage>[] = locales.map(l => ({ label: l.name, value: l.code }))
 
 export function useUserPreferences(): Ref<IPreferences> {
   const preferences = useLocalStorage<IPreferences>('preferences', DEFAULT_PREFERENCES)

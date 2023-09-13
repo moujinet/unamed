@@ -5,15 +5,15 @@ const loginModal = useModal('user.login.form')
 <template>
   <div hidden lg:block p="lg:x-6 y-5">
     <div mb-3 text-4.5 text-caption>
-      Welcome to login!
+      {{ $t('user.login.messages.welcome') }}
     </div>
     <div text-sm>
-      Collect and organize your favorite websites and provide more offline capabilities.
+      {{ $t('user.login.messages.slogan') }}
     </div>
   </div>
 
   <div p="x-3 lg:x-6 b-20px">
-    <CommonTooltip v-if="isHydrated" content="User Login" placement="right" :disabled="isDesktop" @click="loginModal = true">
+    <CommonTooltip v-if="isHydrated" :content="$t('user.actions.login')" placement="right" :disabled="isDesktop" @click="loginModal = true">
       <CommonButton
         color="primary"
         :type="isLaptop ? 'plain' : 'fill'"
@@ -22,7 +22,7 @@ const loginModal = useModal('user.login.form')
         :icon="isDesktop ? '' : 'i-ph-user-circle text-8'"
         block
       >
-        Login
+        {{ $t('user.actions.login') }}
       </CommonButton>
     </CommonTooltip>
 

@@ -7,14 +7,15 @@
   "homepage": "https://github.com/moujinet/unamed",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port 8553",
+    "dev": "nr prepare:env && nr prepare:base && nuxt dev --port 8553",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint .",
     "commit": "czg",
     "typecheck": "stale-dep && nuxi typecheck",
     "prepare:env": "ignore-dependency-scripts \"tsx scripts/build-env.ts\"",
-    "postinstall": "stale-dep -u && simple-git-hooks && nuxt prepare && nr prepare:env",
+    "prepare:base": "ignore-dependency-scripts \"tsx scripts/prepare.ts\"",
+    "postinstall": "stale-dep -u && simple-git-hooks && nuxt prepare && nr prepare:env && nr prepare:base",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -34,10 +35,11 @@
     "nuxt-icon": "^0.5.0",
     "prisma": "^5.2.0",
     "stale-dep": "^0.7.0",
-    "unocss": "^0.55.7"
+    "unocss": "^0.55.7",
+    "vue-i18n": "^9.4.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.41.0",
+    "@antfu/eslint-config": "^0.41.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@iconify-json/ph": "^1.1.6",
@@ -53,20 +55,20 @@
     "czg": "^1.7.1",
     "eslint": "^8.49.0",
     "fs-extra": "^11.1.1",
-    "happy-dom": "^11.0.2",
+    "happy-dom": "^11.0.5",
     "ignore-dependency-scripts": "^1.0.1",
     "lint-staged": "^14.0.1",
     "magic-string": "^0.30.3",
-    "nuxt": "^3.7.1",
+    "nuxt": "^3.7.2",
     "postcss": "^8.4.29",
     "postcss-nested": "^6.0.1",
     "simple-git": "^3.19.1",
     "simple-git-hooks": "^2.9.0",
     "std-env": "^3.4.3",
-    "tsx": "^3.12.8",
+    "tsx": "^3.12.9",
     "typescript": "^5.2.2",
     "vitepress": "^1.0.0-rc.12",
-    "vue-tsc": "^1.8.10"
+    "vue-tsc": "^1.8.11"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

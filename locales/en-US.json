@@ -1,0 +1,251 @@
+{
+  "bookmark": {
+    "actions": {
+      "create": "New Bookmark",
+      "delete": "Delete Bookmark",
+      "edit": "Edit Bookmark"
+    },
+    "form": {
+      "collection": "Collection",
+      "description": "Description",
+      "icon": "Icon",
+      "name": "Name",
+      "url": "URL"
+    },
+    "tips": {
+      "description": "Bookmark description",
+      "name": "Bookmark name"
+    },
+    "title": "Bookmarks"
+  },
+  "collection": {
+    "actions": {
+      "create": "New Collection",
+      "delete": "Delete Collection",
+      "edit": "Edit Collection"
+    },
+    "form": {
+      "icon": "Collection icon",
+      "name": "Collection name"
+    },
+    "title": "Collections"
+  },
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "create": "Create",
+      "delete": "Delete",
+      "loading-more": "Loading more...",
+      "ok": "Ok",
+      "optional": "Optional",
+      "reload": "Reload",
+      "reloading": "Reloading",
+      "save": "Save",
+      "search": "Search",
+      "update": "Update"
+    },
+    "messages": {
+      "failed": "Failed",
+      "required": "{name} is required",
+      "success": "Successful"
+    },
+    "questions": {
+      "delete": "Are you sure want to delete?"
+    },
+    "tips": {
+      "example": "i.e. {example}",
+      "loading": "Loading...",
+      "not-owner": "You are not owner",
+      "required": "Please input {name}",
+      "select": "Please select",
+      "select-setting": "Select a setting"
+    }
+  },
+  "errors": {
+    "bookmark": {
+      "already-exists": "Bookmark already exists",
+      "create-failed": "Bookmark create failed",
+      "delete-failed": "Bookmark delete failed",
+      "not-found": "Bookmark not found",
+      "update-failed": "Bookmark update failed",
+      "url-is-required": "Bookmark URL is required"
+    },
+    "collection": {
+      "already-exists": "Collection already exists",
+      "create-failed": "Collection create failed",
+      "delete-failed": "Collection delete failed",
+      "has-bookmarks": "Collection has bookmarks",
+      "not-found": "Collection not found",
+      "update-failed": "Collection update failed"
+    },
+    "common": {
+      "default-message": "Something went wrong",
+      "not-found": "Page not found",
+      "title": "Error"
+    },
+    "failed": "Failed",
+    "ok": "Ok",
+    "tag": {
+      "already-exists": "Tag already exists",
+      "create-failed": "Tag create failed",
+      "delete-failed": "Tag delete failed",
+      "has-bookmarks": "Tag has bookmarks",
+      "not-found": "Tag not found",
+      "update-failed": "Tag update failed"
+    },
+    "upload": {
+      "file-type-not-allow": "Upload file type not allow",
+      "no-file": "Upload no file"
+    },
+    "user": {
+      "already-exists": "User already exists",
+      "is-not-exists": "User is not exists",
+      "login-failed": "User login failed",
+      "password-do-not-match": "User password do not match",
+      "passwords-are-not-the-same-twice": "User passwords are not the same twice",
+      "profile-update-failed": "User profile update failed",
+      "registration-failed": "User registration failed"
+    }
+  },
+  "nav": {
+    "bottom": {
+      "bookmarks": "Bookmarks",
+      "collections": "Collections",
+      "more": "More",
+      "my": "My",
+      "settings": "Settings",
+      "tags": "Tags"
+    },
+    "settings": {
+      "about": "About",
+      "groups": {
+        "administration": "Administration",
+        "settings": "Settings"
+      },
+      "interface": "Interface",
+      "language": "Language",
+      "preferences": "Preferences",
+      "sponsors": "Sponsors",
+      "system": "System"
+    },
+    "sider": {
+      "bookmarks": "All Bookmarks",
+      "collections": "Collections",
+      "profile": "Profile",
+      "settings": "Settings",
+      "tags": "Tags"
+    },
+    "title": "unamed",
+    "user": {
+      "groups": {
+        "account": "Account"
+      },
+      "profile": "Profile",
+      "security": "Security"
+    }
+  },
+  "settings": {
+    "about": {
+      "built": "Built",
+      "docs": "Documents",
+      "homepage": "Homepage",
+      "repo": "Repository",
+      "slogan": "A lightweight, self-hosted bookmarking web service.",
+      "version": "Version"
+    },
+    "interface": {
+      "color-mode": "Color Mode",
+      "color-mode-dark": "Dark",
+      "color-mode-light": "Light",
+      "color-mode-system": "System",
+      "color-theme": "Color Theme",
+      "view-mode": "View Mode",
+      "view-mode-grid": "Grid View",
+      "view-mode-list": "List View"
+    },
+    "language": {
+      "display": "Display Language"
+    },
+    "preferences": {
+      "click-count": "Click Count",
+      "collection-icon": "Collection Icon",
+      "global-shortcuts": "Global Keyboard Shortcuts",
+      "groups": {
+        "display": "Display",
+        "experimental": "Experimental",
+        "general": "General"
+      },
+      "opengraph-saving": "OpenGraph Saving",
+      "qrcode": "QRCode",
+      "source-tags": "Automatically Source Tags",
+      "virtual-scrolling": "Virtual Scrolling"
+    },
+    "system": {
+      "attachments": {
+        "upload-path": "Upload Path",
+        "upload-path-format": "Path Format"
+      },
+      "general": {
+        "app-domain": "App Domain",
+        "app-name": "App Name"
+      },
+      "groups": {
+        "attachments": "Attachments",
+        "general": "General"
+      }
+    }
+  },
+  "user": {
+    "actions": {
+      "change-password": "Change Password",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register",
+      "upload": "Upload Your Avatar"
+    },
+    "form": {
+      "current-password": "Current password",
+      "fullname": "Full Name",
+      "new-password": "New password",
+      "password": "Password",
+      "re-type-new-password": "Re-Type New password",
+      "re-type-password": "Re-Type Password",
+      "username": "Username"
+    },
+    "groups": {
+      "avatar": "User Avatar",
+      "password": "Password",
+      "profile": "Public Profile",
+      "session": "Session"
+    },
+    "login": {
+      "messages": {
+        "description": "Enjoy your journey!",
+        "slogan": "Collect and organize your favorite websites and provide more offline capabilities.",
+        "title": "Welcome!",
+        "welcome": "Welcome to login!"
+      },
+      "title": "Don't have an account?"
+    },
+    "logout": {
+      "messages": {
+        "description": "Bye! 👋",
+        "title": "See you next time!"
+      }
+    },
+    "messages": {
+      "change-password-success": "Change password successful",
+      "login-again": "You should login again",
+      "password-must-be-different": "Current password and new password must be different",
+      "password-not-same": "New password and Re-type new password must be the same"
+    },
+    "register": {
+      "messages": {
+        "description": "You can login now!",
+        "title": "Register successfully"
+      },
+      "title": "Really have an account?"
+    }
+  }
+}

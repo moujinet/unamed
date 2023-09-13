@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+
 const registerModal = useModal('user.register.form')
 const loginModal = useModal('user.login.form')
 
 const loading = ref(false)
 const { error, register } = useSession()
+const { t } = useI18n()
 
 const registerForm = reactive({
   username: '',
@@ -32,8 +35,8 @@ async function handleRegister() {
 
   if (await register(username, password, passwordConfirm)) {
     toast.success({
-      title: 'Register successfully',
-      description: 'You can login now!',
+      title: t('user.register.messages.title'),
+      description: t('user.register.messages.description'),
       afterAction: () => {
         loginModal.value = true
       },
@@ -55,31 +58,31 @@ async function handleRegister() {
       <div flex="~ center gap-x-4">
         <NavLogo size="32" />
         <h1 text="24px caption" tracking-tighter uppercase>
-          Register
+          {{ $t('user.actions.register') }}
         </h1>
       </div>
       <div flex="~ gap-x-3" pt-6>
-        Really have an account?
+        {{ $t('user.register.title') }}
         <NuxtLink class="cursor-pointer text-primary/80 hover:text-primary" @click="loginModal = true">
-          Login
+          {{ $t('user.actions.login') }}
         </NuxtLink>
       </div>
       <div flex="~ col gap-y-5" w-full p-8>
         <div flex="~ col gap-y-5" pb-4 transition-all>
           <CommonAlert :visible="error !== ''" :content="error" closeable @close="error = ''" />
           <CommonFormItem>
-            <CommonInput v-model="registerForm.username" type="text" placeholder="Username" icon="i-ph-user" />
+            <CommonInput v-model="registerForm.username" type="text" :placeholder="$t('user.form.username')" icon="i-ph-user" />
           </CommonFormItem>
           <CommonFormItem>
-            <CommonInput v-model="registerForm.password" type="password" placeholder="Password" icon="i-ph-password" />
+            <CommonInput v-model="registerForm.password" type="password" :placeholder="$t('user.form.password')" icon="i-ph-password" />
           </CommonFormItem>
           <CommonFormItem>
-            <CommonInput v-model="registerForm.passwordConfirm" type="password" placeholder="Re-Type Password" icon="i-ph-password" @keyup.enter="handleRegister" />
+            <CommonInput v-model="registerForm.passwordConfirm" type="password" :placeholder="$t('user.form.re-type-password')" icon="i-ph-password" @keyup.enter="handleRegister" />
           </CommonFormItem>
         </div>
 
         <CommonButton color="primary" size="lg" :loading="loading" block @click="handleRegister">
-          Register
+          {{ $t('user.actions.register') }}
         </CommonButton>
       </div>
     </div>

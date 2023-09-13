@@ -1,0 +1,251 @@
+{
+  "bookmark": {
+    "actions": {
+      "create": "新书签",
+      "delete": "删除书签",
+      "edit": "编辑书签"
+    },
+    "form": {
+      "collection": "收藏夹",
+      "description": "描述",
+      "icon": "图标",
+      "name": "名称",
+      "url": "网址"
+    },
+    "tips": {
+      "description": "书签说明",
+      "name": "书签名称"
+    },
+    "title": "书签"
+  },
+  "collection": {
+    "actions": {
+      "create": "新建收藏夹",
+      "delete": "删除收藏夹",
+      "edit": "编辑收藏夹"
+    },
+    "form": {
+      "icon": "收藏夹图标",
+      "name": "收藏夹名称"
+    },
+    "title": "收藏夹"
+  },
+  "common": {
+    "actions": {
+      "cancel": "取消",
+      "confirm": "确认",
+      "create": "创建",
+      "delete": "删除",
+      "loading-more": "加载更多...",
+      "ok": "好的",
+      "optional": "可选项",
+      "reload": "刷新页面",
+      "reloading": "重新加载中",
+      "save": "保存",
+      "search": "搜索",
+      "update": "更新"
+    },
+    "messages": {
+      "failed": "失败",
+      "required": "{name} 为必填项",
+      "success": "成功"
+    },
+    "questions": {
+      "delete": "您确定要删除吗？"
+    },
+    "tips": {
+      "example": "例如: {example}",
+      "loading": "加载中...",
+      "not-owner": "你不是所有者",
+      "required": "请输入{name}",
+      "select": "请选择",
+      "select-setting": "选择一个设置"
+    }
+  },
+  "errors": {
+    "bookmark": {
+      "already-exists": "书签已存在",
+      "create-failed": "书签创建失败",
+      "delete-failed": "书签删除失败",
+      "not-found": "找不到书签",
+      "update-failed": "书签更新失败",
+      "url-is-required": "书签网址为必填项"
+    },
+    "collection": {
+      "already-exists": "收藏夹已存在",
+      "create-failed": "收藏夹创建失败",
+      "delete-failed": "收藏夹删除失败",
+      "has-bookmarks": "收藏夹存在书签",
+      "not-found": "未找到收藏夹",
+      "update-failed": "收藏夹更新失败"
+    },
+    "common": {
+      "default-message": "出了些问题",
+      "not-found": "找不到网页",
+      "title": "错误"
+    },
+    "failed": "失败",
+    "ok": "好的",
+    "tag": {
+      "already-exists": "标签已存在",
+      "create-failed": "标签创建失败",
+      "delete-failed": "标签删除失败",
+      "has-bookmarks": "标签有书签",
+      "not-found": "未找到标签",
+      "update-failed": "标签更新失败"
+    },
+    "upload": {
+      "file-type-not-allow": "上传文件类型不允许",
+      "no-file": "没有上传文件"
+    },
+    "user": {
+      "already-exists": "用户已存在",
+      "is-not-exists": "用户不存在",
+      "login-failed": "用户登录失败",
+      "password-do-not-match": "用户密码不匹配",
+      "passwords-are-not-the-same-twice": "用户密码两次不相同",
+      "profile-update-failed": "用户个人资料更新失败",
+      "registration-failed": "用户注册失败"
+    }
+  },
+  "nav": {
+    "bottom": {
+      "bookmarks": "书签",
+      "collections": "收藏夹",
+      "more": "更多的",
+      "my": "我的",
+      "settings": "设置",
+      "tags": "标签"
+    },
+    "settings": {
+      "about": "关于",
+      "groups": {
+        "administration": "管理者",
+        "settings": "设置"
+      },
+      "interface": "界面",
+      "language": "语言",
+      "preferences": "首选项",
+      "sponsors": "赞助商",
+      "system": "系统"
+    },
+    "sider": {
+      "bookmarks": "所有书签",
+      "collections": "收藏夹",
+      "profile": "个人资料",
+      "settings": "设置",
+      "tags": "标签"
+    },
+    "title": "unamed",
+    "user": {
+      "groups": {
+        "account": "帐户"
+      },
+      "profile": "个人资料",
+      "security": "安全性"
+    }
+  },
+  "settings": {
+    "about": {
+      "built": "构建于",
+      "docs": "文档",
+      "homepage": "主页",
+      "repo": "代码仓库",
+      "slogan": "轻量级、自托管的书签 Web 服务。",
+      "version": "版本"
+    },
+    "interface": {
+      "color-mode": "色彩模式",
+      "color-mode-dark": "深色",
+      "color-mode-light": "浅色",
+      "color-mode-system": "系统",
+      "color-theme": "颜色主题",
+      "view-mode": "查看模式",
+      "view-mode-grid": "网格视图",
+      "view-mode-list": "列表视图"
+    },
+    "language": {
+      "display": "显示语言"
+    },
+    "preferences": {
+      "click-count": "点击计数",
+      "collection-icon": "集合图标",
+      "global-shortcuts": "全局键盘快捷键",
+      "groups": {
+        "display": "展示",
+        "experimental": "实验性功能",
+        "general": "一般的"
+      },
+      "opengraph-saving": "OpenGraph 保存",
+      "qrcode": "二维码",
+      "source-tags": "自动来源标签",
+      "virtual-scrolling": "虚拟滚动"
+    },
+    "system": {
+      "attachments": {
+        "upload-path": "上传路径",
+        "upload-path-format": "路径格式"
+      },
+      "general": {
+        "app-domain": "自定义域名",
+        "app-name": "应用名称"
+      },
+      "groups": {
+        "attachments": "附件",
+        "general": "通用"
+      }
+    }
+  },
+  "user": {
+    "actions": {
+      "change-password": "更改密码",
+      "login": "登录",
+      "logout": "登出",
+      "register": "注册",
+      "upload": "上传您的头像"
+    },
+    "form": {
+      "current-password": "当前密码",
+      "fullname": "全名",
+      "new-password": "新密码",
+      "password": "密码",
+      "re-type-new-password": "重新输入新密码",
+      "re-type-password": "重新输入密码",
+      "username": "用户名"
+    },
+    "groups": {
+      "avatar": "用户头像",
+      "password": "密码",
+      "profile": "公开资料",
+      "session": "会话"
+    },
+    "login": {
+      "messages": {
+        "description": "祝您旅途愉快！",
+        "slogan": "收集并整理您喜爱的网站并提供更多离线功能。",
+        "title": "欢迎！",
+        "welcome": "欢迎您登录！"
+      },
+      "title": "还没有帐户？"
+    },
+    "logout": {
+      "messages": {
+        "description": "再见！ \n👋",
+        "title": "下次见！"
+      }
+    },
+    "messages": {
+      "change-password-success": "修改密码成功",
+      "login-again": "您需要重新登录",
+      "password-must-be-different": "当前密码和新密码必须不同",
+      "password-not-same": "新密码和重新输入新密码必须相同"
+    },
+    "register": {
+      "messages": {
+        "description": "您现在可以登录了！",
+        "title": "注册成功"
+      },
+      "title": "已经有账户吗？"
+    }
+  }
+}

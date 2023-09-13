@@ -15,14 +15,12 @@ export async function useFetchAPI<T>(
       : {},
     async onResponse(ctx) {
       if (ctx.response._data.code !== SUCCESS) {
-        toast.error({
-          title: 'Oops',
-          description: ctx.response._data.message,
-        })
-
         if (ctx.response.status === 401) {
           useSession().clear()
-          navigateTo('/')
+          await navigateTo('/')
+        }
+        else {
+          throw new Error(ctx.response._data.message)
         }
       }
     },

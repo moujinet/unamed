@@ -25,7 +25,7 @@ defineProps<{
 
         <div v-if="isMobile" px="3" mt-2 pt-4 border="t base">
           <CommonButton type="plain" color="primary" size="lg" block @click="hideAllPoppers">
-            Cancel
+            {{ $t('common.actions.cancel') }}
           </CommonButton>
         </div>
       </div>

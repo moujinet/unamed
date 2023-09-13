@@ -38,7 +38,7 @@ const modelValue = defineModel<string>()
       <div v-if="icon" flex="~ center" leading-none>
         <CommonIcon :name="icon" :size="mini ? '16' : '20'" />
       </div>
-      <span v-if="!mini && label">{{ label }}</span>
+      <span v-if="!mini && label">{{ $t(label) }}</span>
     </div>
   </div>
 </template>

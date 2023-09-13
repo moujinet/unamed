@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 defineProps<{
-  title: string
+  title?: string
   icon?: string
   view?: 'grid' | 'list'
   hiddenBack?: boolean
@@ -15,6 +15,7 @@ const { y } = useWindowScroll()
 <template>
   <div :class="fixedWidth ? 'h-full w-full xl:w-700px xl:border-r border-base' : 'w-full'">
     <header
+      v-if="isHydrated"
       sticky top-0 z-10 min-h-60px w-full select-none backdrop-blur transition-all
       :class="[
         y > 40 ? 'op-90' : '',
@@ -28,7 +29,9 @@ const { y } = useWindowScroll()
             <CommonIcon :name="icon" size="auto" class="text-(20px primary) md:text-24px" />
           </div>
           <h1 text="caption 18px lg:20px" leading-none>
-            {{ title }}
+            <slot name="title">
+              {{ title }}
+            </slot>
           </h1>
         </div>
         <div v-if="$slots.header" absolute="~ v-center" right-8>

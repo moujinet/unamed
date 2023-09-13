@@ -40,7 +40,12 @@ function onIconSelected(icon: string) {
       <div>
         <header flex="~ v-center gap-x-3" p="x-5 y-3" border="b base">
           <CommonIcon name="i-ph-magnifying-glass" size="20" class="text-comment" />
-          <input v-model="keyword" type="text" placeholder="Search" class="w-full border-none bg-transparent placeholder:text-comment outline-none">
+          <input
+            v-model="keyword"
+            type="text"
+            class="w-full border-none bg-transparent placeholder:text-comment outline-none"
+            :placeholder="$t('common.actions.search')"
+          >
         </header>
         <main grid="~ cols-8 sm:cols-8 gap-1.5 sm:gap-3" p="5">
           <template v-for="icon in resolvedIcons" :key="icon">

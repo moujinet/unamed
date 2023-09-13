@@ -82,7 +82,7 @@ onClickOutside(dropdownRef, () => {
         >
           <div class="select__option--label">
             <CommonIcon v-if="option.icon" :name="option.icon" />
-            <span>{{ option.label }}</span>
+            <span>{{ $t(option.label || '') }}</span>
           </div>
           <div v-if="modelValue === option.value" class="select__option--checked">
             <CommonIcon name="i-ph-check" />

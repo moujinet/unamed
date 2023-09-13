@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+
 const loginForm = reactive({
   username: '',
   password: '',
@@ -8,6 +10,7 @@ const registerModal = useModal('user.register.form')
 
 const loading = ref(false)
 const { error, login } = useSession()
+const { t } = useI18n()
 
 // Reset form
 watch(loginModal, (newVal) => {
@@ -29,8 +32,8 @@ async function handleLogin() {
 
   if (await login(username, password)) {
     toast.success({
-      title: 'Welcome!',
-      description: 'Enjoy your journey!',
+      title: t('user.login.messages.title'),
+      description: t('user.login.messages.description'),
       afterAction: () => {
         loginModal.value = false
       },
@@ -52,27 +55,27 @@ async function handleLogin() {
       <div flex="~ center gap-x-4">
         <NavLogo size="32" />
         <h1 text="24px caption" tracking-tighter uppercase>
-          Login
+          {{ $t('user.actions.login') }}
         </h1>
       </div>
       <div flex="~ gap-x-3" pt-6>
-        Don't have an account?
+        {{ $t('user.login.title') }}
         <NuxtLink class="cursor-pointer text-primary/80 hover:text-primary" @click="registerModal = true">
-          Register
+          {{ $t('user.actions.register') }}
         </NuxtLink>
       </div>
       <div flex="~ col gap-y-5" w-full p-8>
         <div flex="~ col gap-y-5" pb-4>
           <CommonAlert :visible="error !== ''" :content="error" closeable @close="error = ''" />
           <CommonFormItem>
-            <CommonInput v-model="loginForm.username" type="text" placeholder="Username" icon="i-ph-user" />
+            <CommonInput v-model="loginForm.username" type="text" :placeholder="$t('user.form.username')" icon="i-ph-user" />
           </CommonFormItem>
           <CommonFormItem>
-            <CommonInput v-model="loginForm.password" type="password" placeholder="Password" icon="i-ph-password" @keyup.enter="handleLogin" />
+            <CommonInput v-model="loginForm.password" type="password" :placeholder="$t('user.form.password')" icon="i-ph-password" @keyup.enter="handleLogin" />
           </CommonFormItem>
         </div>
         <CommonButton color="primary" size="lg" :loading="loading" block @click="handleLogin">
-          Login
+          {{ $t('user.actions.login') }}
         </CommonButton>
       </div>
     </div>
