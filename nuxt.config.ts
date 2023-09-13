@@ -45,6 +45,20 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/': { prerender: true },
+    '/settings/**': { prerender: false },
+    '/user/**': { prerender: false },
+
+    // CDN cache rules
+    '/manifest.webmanifest': {
+      headers: {
+        'Content-Type': 'application/manifest+json',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    },
+  },
+
   app: {
     keepalive: true,
     rootId: 'app',
