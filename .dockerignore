@@ -1,0 +1,13 @@
+node_modules
+*.log
+dist
+.output
+.nuxt
+
+.DS_Store
+.idea/
+.vite-inspect
+.eslintcache
+.vscode
+
+.env
