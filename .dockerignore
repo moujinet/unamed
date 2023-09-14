@@ -13,3 +13,7 @@ dist
 .env
 public/avatars
 public/locales
+
+*~
+*swp
+*swo
