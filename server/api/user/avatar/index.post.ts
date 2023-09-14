@@ -1,4 +1,5 @@
 import { writeFile } from 'node:fs/promises'
+import { env } from 'node:process'
 import type { IApiResponse } from '~/types'
 import { prisma } from '~/prisma/client'
 import { UPLOAD_FILE_TYPE_NOT_ALLOW, UPLOAD_NO_FILE, USER_UPDATE_FAILED } from '~/utils/errors'
@@ -26,13 +27,14 @@ export default defineEventHandler(async (event): IApiResponse<string | null> => 
 
   for (let i = 0; i < 1; i++) {
     if (files[i].name === 'file') {
+      const uploadPath = env.UPLOAD_PATH || './public/avatars'
       const mimetype = files[i].type
       const fileExtName = files[i].filename?.split('.').pop() || 'png'
       if (!mimetype || !mimeTypes.includes(mimetype))
         return error(UPLOAD_FILE_TYPE_NOT_ALLOW)
 
       const data = files[i].data
-      const filePath = `./public/avatars/user-${id}.${fileExtName}`
+      const filePath = `${uploadPath}/user-${id}.${fileExtName}`
 
       await writeFile(filePath, data)
       uploads.push(filePath.replace('./public', ''))
