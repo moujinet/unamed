@@ -1,6 +1,6 @@
 export const locales: any[] = [
   {
-    code: 'en',
+    code: 'en-US',
     name: 'English (EN)',
   },
   {
