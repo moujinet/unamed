@@ -35,5 +35,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          push: true
-          tags: mouji/unamed:latest
+          context: .
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.metal.outputs.tags }}
+          labels: ${{ steps.metal.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
