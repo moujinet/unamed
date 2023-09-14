@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises'
+import { stat, unlink, writeFile } from 'node:fs/promises'
 import { env } from 'node:process'
 import type { IApiResponse } from '~/types'
 import { prisma } from '~/prisma/client'
@@ -24,23 +24,29 @@ export default defineEventHandler(async (event): IApiResponse<string | null> => 
     return error(UPLOAD_NO_FILE)
 
   const uploads: string[] = []
+  const uploadPath = env.UPLOAD_PATH || './public/avatars'
 
   for (let i = 0; i < 1; i++) {
     if (files[i].name === 'file') {
-      const uploadPath = env.UPLOAD_PATH || './public/avatars'
       const mimetype = files[i].type
       const fileExtName = files[i].filename?.split('.').pop() || 'png'
       if (!mimetype || !mimeTypes.includes(mimetype))
         return error(UPLOAD_FILE_TYPE_NOT_ALLOW)
 
       const data = files[i].data
-      const filePath = `${uploadPath}/user-${id}.${fileExtName}`
-      const fileName = `/avatars/user-${id}.${fileExtName}`
+      const timestamp = (new Date()).getTime()
+      const filePath = `${uploadPath}/user-${id}-${timestamp}.${fileExtName}`
+      const fileName = `/avatars/user-${id}-${timestamp}.${fileExtName}`
 
       await writeFile(filePath, data)
       uploads.push(fileName)
     }
   }
+
+  const originAvatar = `${uploadPath.replace('/avatars', '/')}${event.context.user.avatar}`
+
+  if (await stat(originAvatar))
+    await unlink(originAvatar)
 
   const user = await prisma.user.update({
     where: {
