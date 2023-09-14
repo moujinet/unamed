@@ -34,7 +34,6 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install --frozen-lockfile --ignore-scripts
-          pnpm run prepare:env
           pnpm run prepare:nuxt
       - name: Build with VitePress
         run: |
