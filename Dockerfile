@@ -43,4 +43,4 @@ EXPOSE ${PORT}/tcp
 
 VOLUME ["/unamed/data"]
 
-CMD ["node", ".output/server/index.mjs"]
+CMD ["node", "server/index.mjs"]
