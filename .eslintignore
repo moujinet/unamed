@@ -8,3 +8,4 @@
 *.sqlite
 *.prisma
 public/
+.github
