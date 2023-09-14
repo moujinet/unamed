@@ -45,8 +45,12 @@ export default defineEventHandler(async (event): IApiResponse<string | null> => 
 
   const originAvatar = `${uploadPath.replace('/avatars', '/')}${event.context.user.avatar}`
 
-  if (await stat(originAvatar))
-    await unlink(originAvatar)
+  try {
+    const s = await stat(originAvatar)
+    if (s.isFile())
+      await unlink(originAvatar)
+  }
+  catch (e) {}
 
   const user = await prisma.user.update({
     where: {
