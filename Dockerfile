@@ -39,7 +39,7 @@ USER unamed
 ENV NODE_ENV=production
 ENV PORT=8553
 
-EXPOSE ${PORT}/tcp
+EXPOSE ${PORT}
 
 VOLUME ["/unamed/data"]
 
