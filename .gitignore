@@ -33,3 +33,5 @@ docs/.vitepress/cache
 # public
 public/avatars/*.*
 public/locales
+
+build-info.json
