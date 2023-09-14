@@ -35,9 +35,10 @@ export default defineEventHandler(async (event): IApiResponse<string | null> => 
 
       const data = files[i].data
       const filePath = `${uploadPath}/user-${id}.${fileExtName}`
+      const fileName = `/avatars/user-${id}.${fileExtName}`
 
       await writeFile(filePath, data)
-      uploads.push(filePath.replace('./public', ''))
+      uploads.push(fileName)
     }
   }
 
