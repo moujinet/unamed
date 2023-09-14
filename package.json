@@ -20,6 +20,7 @@
     "prepare:env": "ignore-dependency-scripts \"tsx scripts/build-env.ts\"",
     "prepare:base": "ignore-dependency-scripts \"tsx scripts/prepare.ts\"",
     "prepare:prisma": "npx prisma db push",
+    "prepare:nuxt": "nuxt prepare",
     "postinstall": "stale-dep -u && simple-git-hooks && nuxt prepare",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
