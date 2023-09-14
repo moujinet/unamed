@@ -34,9 +34,9 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install --frozen-lockfile --ignore-scripts
+          pnpm run prepare:nuxt
       - name: Build with VitePress
         run: |
-          pnpm run prepare:nuxt
           pnpm run docs:build
           touch docs/.vitepress/dist/.nojekyll
       - name: Upload artifact
